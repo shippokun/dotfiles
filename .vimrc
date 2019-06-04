@@ -1,7 +1,8 @@
 " -- Syntax Highlighting ---------------------------------------
-let g:hybrid_use_iTerm_colors = 1
+let g:hybrid_use_iTerm_colors=1
 colorscheme hybrid
 syntax on
+set termguicolors
 
 " tab幅の設定
 set tabstop=2
@@ -15,10 +16,6 @@ set softtabstop=2
 set number
 " スワップファイルを作らない
 set noswapfile
-
-" 自動インデント
-set smartindent
-set autoindent
 
 " [検索]大文字小文字を区別しない
 set ignorecase
@@ -66,12 +63,10 @@ if &term =~ "xterm"
   let &t_SI .= "\e[?2004h"
   let &t_EI .= "\e[?2004l"
   let &pastetoggle = "\e[201~"
-
   function XTermPasteBegin(ret)
     set paste
     return a:ret
   endfunction
-
   inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
 set clipboard=unnamedplus
