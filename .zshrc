@@ -1,4 +1,9 @@
-source $HOME/.zplugin/bin/zplugin.zsh
+# Clone zplugin if not exist
+if [[ ! -d ~/.zplugin ]]; then
+  git clone https://github.com/zdharma/zplugin $HOME/.zplugin
+fi
+
+source $HOME/.zplugin/zplugin.zsh
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
