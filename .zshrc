@@ -1,6 +1,7 @@
 # Clone zplugin if not exist
 if [[ ! -d ~/.zplugin ]]; then
   git clone https://github.com/zdharma/zplugin $HOME/.zplugin
+  brew install reattach-to-user-namespace
 fi
 
 source $HOME/.zplugin/zplugin.zsh
