@@ -59,6 +59,7 @@ alias ls="ls -G"
 alias la="ls -a"
 alias ll="ls -lh"
 alias cl="clear"
+alias mkdir="mkdir -p"
 
 autoload -U compinit
 compinit
