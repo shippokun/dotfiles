@@ -40,6 +40,9 @@ set whichwrap=b,s,h,l,<,>,[,],~
 " カーソルラインのハイライト
 set cursorline
 
+" NERDTreeでdotfilesを見れるようにする
+let NERDTreeShowHidden=1
+
 "マウス操作の有効化
 if has('mouse')
   set mouse=a
@@ -129,9 +132,10 @@ if dein#load_state('~/.cache/dein')
   " Required:
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  " Add or remove your plugins here like this:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
+  " toml files
+  call dein#load_toml('~/.cache/dein/rc/dein.toml', {'lazy': 0})
+  call dein#load_toml('~/.cache/dein/rc/dein_lazy.toml', {'lazy': 1})
+
 
   " Required:
   call dein#end()
@@ -147,4 +151,4 @@ if dein#check_install()
   call dein#install()
 endif
 
-"End dein Scripts-------------------------
+
