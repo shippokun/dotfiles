@@ -116,6 +116,15 @@ vnoremap v $h
 nnoremap <Tab> %
 vnoremap <Tab> %
 
+"""""""""""""""
+" インサートモード中のキーマップ変更
+"""""""""""""""
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+"""""""""""""""
+
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
