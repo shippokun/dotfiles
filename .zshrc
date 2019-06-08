@@ -54,12 +54,12 @@ setopt no_promptcr
 # 補完候補がないときにビープ音を鳴らさない
 setopt no_beep
 
-
 alias ls="ls -G"
 alias la="ls -a"
 alias ll="ls -lh"
 alias cl="clear"
 alias mkdir="mkdir -p"
+alias chrm="open /Applications/Google\ Chrome.app"
 
 autoload -U compinit
 compinit
