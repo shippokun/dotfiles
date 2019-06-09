@@ -17,6 +17,10 @@ set number
 " スワップファイルを作らない
 set noswapfile
 
+" 自動インデント
+set smartindent
+set autoindent
+
 " [検索]大文字小文字を区別しない
 set ignorecase
 set smartcase
@@ -76,13 +80,13 @@ set clipboard=unnamedplus
 
 " 対応括弧に'<'と'>'のペアを追加
 set matchpairs& matchpairs+=<:>
-inoremap ""  ""<left>
-inoremap $$  $$<left>
-inoremap ''  ''<left>
-inoremap ()  ()<left>
-inoremap <>  <><left>
-inoremap []  []<left>
-"
+inoremap "  ""<left>
+inoremap $  $$<left>
+inoremap '  ''<left>
+inoremap (  ()<left>
+inoremap <  <><left>
+inoremap [  []<left>
+inoremap {  {}<left>
 
 " 対応する括弧などをハイライト表示する
 set showmatch
@@ -160,4 +164,30 @@ if dein#check_install()
   call dein#install()
 endif
 
+function! DeleteParenthesesAdjoin()
+    let pos = col(".") - 1  " カーソルの位置．1からカウント
+    let str = getline(".")  " カーソル行の文字列
+    let parentLList = ["(", "[", "{", "\'", "\""]
+    let parentRList = [")", "]", "}", "\'", "\""]
+    let cnt = 0
+
+    let output = ""
+
+    " カーソルが行末の場合
+    if pos == strlen(str)
+        return "\b"
+    endif
+    for c in parentLList
+        " カーソルの左右が同種の括弧
+        if str[pos-1] == c && str[pos] == parentRList[cnt]
+            call cursor(line("."), pos + 2)
+            let output = "\b"
+            break
+        endif
+        let cnt += 1
+    endfor
+    return output."\b"
+endfunction
+" BackSpaceに割り当て
+inoremap <silent> <BS> <C-R>=DeleteParenthesesAdjoin()<CR>
 
