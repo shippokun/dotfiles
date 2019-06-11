@@ -45,6 +45,8 @@ set cursorline
 
 " NERDTreeでdotfilesを見れるようにする
 let NERDTreeShowHidden=1
+" 起動時にNERDTreeを表示
+autocmd vimenter * NERDTree
 
 "マウス操作の有効化
 if has('mouse')
