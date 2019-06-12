@@ -24,6 +24,9 @@ set autoindent
 set ignorecase
 set smartcase
 
+" OSレベルのクリップボードで保持
+set clipboard+=unnamed
+
 " 1文字入力ごとに検索を行う
 set incsearch
 " 検索結果のハイライト
