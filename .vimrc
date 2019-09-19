@@ -1,7 +1,8 @@
 " -- Syntax Highlighting ---------------------------------------
-colorscheme morning 
+let g:hybrid_use_iTerm_colors=1
+colorscheme hybrid 
 syntax on
-set termguicolors
+set background=dark
 
 " tab幅の設定
 set tabstop=2
@@ -49,7 +50,7 @@ set cursorline
 " NERDTreeでdotfilesを見れるようにする
 let NERDTreeShowHidden=1
 " 起動時にNERDTreeを表示
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 
 "マウス操作の有効化
 if has('mouse')
@@ -83,14 +84,14 @@ endif
 set clipboard=unnamedplus
 
 " 対応括弧に'<'と'>'のペアを追加
-set matchpairs& matchpairs+=<:>
-inoremap "  ""<left>
-inoremap $  $$<left>
-inoremap '  ''<left>
-inoremap (  ()<left>
-inoremap <  <><left>
-inoremap [  []<left>
-inoremap {  {}<left>
+""set matchpairs& matchpairs+=<:>
+"inoremap "  ""<left>
+"inoremap $  $$<left>
+"inoremap '  ''<left>
+"inoremap (  ()<left>
+"inoremap <  <><left>
+"inoremap [  []<left>
+"inoremap {  {}<left>
 
 " 対応する括弧などをハイライト表示する
 set showmatch
@@ -103,7 +104,7 @@ set backspace=indent,eol,start
 " 長いテキストの折り返し
 set wrap
 " 余裕を持ってスクロールs
-set scrolloff=5
+set scrolloff=10
 
 " 検索後にジャンプした際に検索単語を画面中央に持ってくる
 nnoremap n nzz
@@ -161,12 +162,13 @@ endif
 
 " Required:
 filetype plugin indent on
-syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
+
+
 
 function! DeleteParenthesesAdjoin()
     let pos = col(".") - 1  " カーソルの位置．1からカウント

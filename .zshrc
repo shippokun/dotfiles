@@ -60,6 +60,8 @@ alias ll="ls -lh"
 alias cl="clear"
 alias mkdir="mkdir -p"
 alias chrm="open /Applications/Google\ Chrome.app"
+alias python="python3"
+alias l="exa -lT"
 
 autoload -U compinit
 compinit
@@ -126,3 +128,8 @@ function tmux_automatically_attach_session()
 }
 tmux_automatically_attach_session
 eval "$(anyenv init -)"
+export PATH="/usr/local/opt/libarchive/bin:$PATH"
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
