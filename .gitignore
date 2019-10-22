@@ -2,3 +2,4 @@
 .zplugin/*
 .vim/.netrwhist
 tmux-client*
+.vim/pack/*
