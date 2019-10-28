@@ -31,26 +31,23 @@ if exists('*minpac#init')
 
   if has('nvim')
     call minpac#add('Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'})
+    call minpac#add('radenling/vim-dispatch-neovim')
   else
     call minpac#add('Shougo/deoplete.nvim')
     call minpac#add('roxma/nvim-yarp')
     call minpac#add('roxma/vim-hug-neovim-rpc')
+    call minpac#add('prabirshrestha/async.vim')
   endif
 
   " For frontend plugins
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
   call minpac#add('mattn/emmet-vim')
 
-  if has('nvim')
-    call minpac#add('radenling/vim-dispatch-neovim')
-  else
-    call minpac#add('prabirshrestha/async.vim')
-  endif
-
   " style
   call minpac#add('vim-scripts/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   " call minpac#add('altercation/vim-colors-solarized')
+  call minpac#add('nathanaelkane/vim-indent-guides')
   " TODO: vim-devicons を使ってみる
 
   " syntax
