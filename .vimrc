@@ -16,7 +16,6 @@ if exists('*minpac#init')
   " Add about vim plugins
   call minpac#add('Townk/vim-autoclose')
   call minpac#add('airblade/vim-gitgutter')
-  call minpac#add('christoomey/vim-tmux-navigator')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('haya14busa/vim-open-googletranslate')
   call minpac#add('honza/vim-snippets')
@@ -142,6 +141,17 @@ vnoremap v $h
 " TABにて対応ペアにジャンプ
 nnoremap <Tab> %
 vnoremap <Tab> %
+
+" 1つ前のバッファに切り替え
+nnoremap <silent> <C-j> :bprev<CR>
+" 1つ後のバッファに切り替え
+nnoremap <silent> <C-k> :bnext<CR>
+
+vnoremap <silent> <Enter> :EasyAlign<cr>
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
