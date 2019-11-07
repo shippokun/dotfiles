@@ -10,3 +10,5 @@ do
   echo "$f"
   ln -s $PWD/"$f" $HOME/"$f"
 done
+
+# pip3 install --upgrade pynvim
