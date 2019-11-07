@@ -61,6 +61,8 @@ alias mkdir="mkdir -p"
 alias chrm="open /Applications/Google\ Chrome.app"
 alias python="python3"
 alias l="exa -lT"
+alias gpom="git pull origin master"
+alias gplo="git pull origin"
 
 autoload -U compinit
 compinit
