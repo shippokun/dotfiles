@@ -82,7 +82,7 @@ set number " 行番号表示
 set numberwidth=5
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から行頭への移動
 set cursorline " カーソルラインのハイライト
-set scrolloff=10
+set scrolloff=6
 set shiftwidth=2
 set expandtab
 set smartindent " 自動インデント
