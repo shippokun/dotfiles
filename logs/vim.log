@@ -1,0 +1,119 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.008  000.008: --- VIM STARTING ---
+000.104  000.096: Allocated generic buffers
+000.550  000.446: locale set
+000.554  000.004: clipboard setup
+000.559  000.005: window checked
+001.324  000.765: inits 1
+001.331  000.007: parsing arguments
+001.332  000.001: expanding arguments
+010.838  009.506: shell init
+014.014  003.176: Termcap init
+014.085  000.071: inits 2
+014.429  000.344: init highlight
+023.229  005.655  005.655: sourcing /Users/keigo/.vim/colors/hybrid.vim
+026.072  001.635  001.635: sourcing /usr/local/share/vim/vim81/ftoff.vim
+029.513  000.343  000.343: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/opt/minpac/plugin/minpac.vim
+043.053  013.242  013.242: sourcing /usr/local/share/vim/vim81/filetype.vim
+043.512  000.073  000.073: sourcing /usr/local/share/vim/vim81/filetype.vim
+045.008  001.254  001.254: sourcing /usr/local/share/vim/vim81/indent.vim
+045.253  000.027  000.027: sourcing /usr/local/share/vim/vim81/filetype.vim
+046.772  001.364  001.364: sourcing /usr/local/share/vim/vim81/ftplugin.vim
+047.017  000.026  000.026: sourcing /usr/local/share/vim/vim81/filetype.vim
+047.302  000.030  000.030: sourcing /usr/local/share/vim/vim81/ftplugin.vim
+047.491  000.031  000.031: sourcing /usr/local/share/vim/vim81/indent.vim
+054.002  004.077  004.077: sourcing /usr/local/share/vim/vim81/syntax/syncolor.vim
+054.478  000.193  000.193: sourcing /usr/local/share/vim/vim81/syntax/syncolor.vim
+057.585  007.957  003.687: sourcing /Users/keigo/.vim/colors/hybrid.vim
+057.759  008.436  000.479: sourcing /usr/local/share/vim/vim81/syntax/synload.vim
+057.798  010.163  001.727: sourcing /usr/local/share/vim/vim81/syntax/syntax.vim
+100.916  001.554  001.554: sourcing /usr/local/Cellar/vim/8.1.1500/share/vim/vim81/syntax/nosyntax.vim
+101.694  000.194  000.194: sourcing /usr/local/share/vim/vim81/syntax/syncolor.vim
+102.157  000.182  000.182: sourcing /usr/local/share/vim/vim81/syntax/syncolor.vim
+103.959  002.749  002.373: sourcing /Users/keigo/.vim/colors/hybrid.vim
+104.063  002.964  000.215: sourcing /usr/local/share/vim/vim81/syntax/synload.vim
+104.097  004.858  000.340: sourcing /usr/local/share/vim/vim81/syntax/syntax.vim
+104.149  088.659  049.958: sourcing $HOME/.vimrc
+104.156  001.068: sourcing vimrc file(s)
+109.831  000.036  000.036: sourcing /Users/keigo/.vim/pack/minpac/opt/minpac/plugin/minpac.vim
+111.824  001.122  001.122: sourcing /usr/local/share/vim/vim81/plugin/getscriptPlugin.vim
+112.669  000.703  000.703: sourcing /usr/local/share/vim/vim81/plugin/gzip.vim
+114.484  001.684  001.684: sourcing /usr/local/share/vim/vim81/plugin/logiPat.vim
+114.859  000.233  000.233: sourcing /usr/local/share/vim/vim81/plugin/manpager.vim
+115.576  000.593  000.593: sourcing /usr/local/share/vim/vim81/plugin/matchparen.vim
+117.805  002.117  002.117: sourcing /usr/local/share/vim/vim81/plugin/netrwPlugin.vim
+119.339  001.393  001.393: sourcing /usr/local/share/vim/vim81/plugin/rrhelper.vim
+119.801  000.323  000.323: sourcing /usr/local/share/vim/vim81/plugin/spellfile.vim
+120.481  000.545  000.545: sourcing /usr/local/share/vim/vim81/plugin/tarPlugin.vim
+122.223  001.612  001.612: sourcing /usr/local/share/vim/vim81/plugin/tohtml.vim
+122.876  000.504  000.504: sourcing /usr/local/share/vim/vim81/plugin/vimballPlugin.vim
+124.711  001.667  001.667: sourcing /usr/local/share/vim/vim81/plugin/zipPlugin.vim
+124.783  008.095: loading plugins
+130.274  001.759  001.759: sourcing /Users/keigo/.vim/pack/minpac/start/coc.nvim/autoload/coc/rpc.vim
+133.063  002.209  002.209: sourcing /Users/keigo/.vim/pack/minpac/start/coc.nvim/autoload/coc/util.vim
+136.675  002.954  002.954: sourcing /Users/keigo/.vim/pack/minpac/start/coc.nvim/autoload/coc/client.vim
+143.774  016.031  009.109: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/coc.nvim/plugin/coc.vim
+146.856  000.656  000.656: sourcing /Users/keigo/.vim/pack/minpac/start/deoplete.nvim/autoload/deoplete.vim
+147.102  001.482  000.826: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/deoplete.nvim/plugin/deoplete.vim
+152.416  002.781  002.781: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/emmet-vim/plugin/emmet.vim
+154.428  000.283  000.283: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/rust.vim/plugin/cargo.vim
+154.785  000.239  000.239: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/rust.vim/plugin/rust.vim
+155.446  000.282  000.282: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/rust.vim/ftdetect/rust.vim
+157.166  000.491  000.491: sourcing /Users/keigo/.vim/pack/minpac/start/tcomment_vim/autoload/tcomment/deprecated.vim
+163.725  007.653  007.162: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/tcomment_vim/plugin/tcomment.vim
+167.151  001.871  001.871: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-autoclose/plugin/AutoClose.vim
+169.765  001.124  001.124: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-better-whitespace/plugin/better-whitespace.vim
+173.456  000.596  000.596: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-easy-align/plugin/easy_align.vim
+176.488  001.642  001.642: sourcing /Users/keigo/.vim/pack/minpac/start/vim-gitgutter/autoload/gitgutter/utility.vim
+180.363  001.812  001.812: sourcing /Users/keigo/.vim/pack/minpac/start/vim-gitgutter/autoload/gitgutter/highlight.vim
+181.963  007.856  004.402: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-gitgutter/plugin/gitgutter.vim
+184.612  000.643  000.643: sourcing /Users/keigo/.vim/pack/minpac/start/vim-indent-guides/autoload/indent_guides.vim
+185.241  001.734  001.091: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-indent-guides/plugin/indent_guides.vim
+187.179  000.279  000.279: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-markdown/ftdetect/markdown.vim
+190.050  002.080  002.080: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/plugin/prettier.vim
+192.286  001.188  001.188: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/css.vim
+192.700  000.241  000.241: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/graphql.vim
+193.037  000.191  000.191: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/html.vim
+193.407  000.210  000.210: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/javascript.vim
+193.781  000.234  000.234: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/json.vim
+194.158  000.228  000.228: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/less.vim
+194.725  000.450  000.450: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/markdown.vim
+196.224  001.332  001.332: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/scss.vim
+196.598  000.235  000.235: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/typescript.vim
+197.072  000.327  000.327: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/vue.vim
+197.555  000.317  000.317: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-prettier/ftdetect/yaml.vim
+201.527  003.197  003.197: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-rails/plugin/rails.vim
+202.692  000.392  000.392: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-ruby/ftdetect/ruby.vim
+203.333  000.492  000.492: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-ruby/ftdetect/ruby_extra.vim
+204.298  000.243  000.243: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-snippets/plugin/vimsnippets.vim
+206.200  001.305  001.305: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-surround/plugin/surround.vim
+207.944  000.239  000.239: sourcing /Users/keigo/Documents/dotfiles/.vim/pack/minpac/start/vim-vue/ftdetect/vue.vim
+208.152  028.257: loading packages
+208.319  000.167: loading after plugins
+208.338  000.019: inits 3
+210.100  001.762: reading viminfo
+210.154  000.054: setting raw mode
+210.168  000.014: start termcap
+210.221  000.053: clearing screen
+210.950  000.729: opening buffers
+216.711  001.786  001.786: sourcing /Users/keigo/.vim/pack/minpac/start/vim-gitgutter/autoload/gitgutter.vim
+217.730  004.994: BufEnter autocommands
+217.734  000.004: editing files in windows
+219.965  001.376  001.376: sourcing /Users/keigo/.vim/pack/minpac/start/deoplete.nvim/autoload/deoplete/init.vim
+222.512  001.547  001.547: sourcing /Users/keigo/.vim/pack/minpac/start/deoplete.nvim/autoload/deoplete/custom.vim
+224.572  001.476  001.476: sourcing /Users/keigo/.vim/pack/minpac/start/deoplete.nvim/autoload/deoplete/util.vim
+225.593  000.728  000.728: sourcing /Users/keigo/.vim/pack/minpac/start/vim-hug-neovim-rpc/autoload/neovim_rpc.vim
+468.779  001.971  001.971: sourcing /Users/keigo/.vim/pack/minpac/start/nvim-yarp/autoload/yarp.vim
+472.447  002.496  002.496: sourcing /Users/keigo/.vim/pack/minpac/start/nvim-yarp/autoload/yarp/core.vim
+475.770  000.436  000.436: sourcing /Users/keigo/.vim/pack/minpac/start/nvim-yarp/autoload/yarp/pyx.vim
+799.257  001.300  001.300: sourcing /Users/keigo/.vim/pack/minpac/start/deoplete.nvim/autoload/deoplete/mapping.vim
+802.954  003.182  003.182: sourcing /Users/keigo/.vim/pack/minpac/start/deoplete.nvim/autoload/deoplete/handler.vim
+804.587  572.341: VimEnter autocommands
+804.594  000.007: before starting main loop
+807.611  003.017: first screen update
+807.615  000.004: --- VIM STARTED ---
