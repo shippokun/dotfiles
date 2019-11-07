@@ -16,17 +16,14 @@ if exists('*minpac#init')
   " Add about vim plugins
   call minpac#add('Townk/vim-autoclose')
   call minpac#add('airblade/vim-gitgutter')
-  call minpac#add('editorconfig/editorconfig-vim')
-  call minpac#add('haya14busa/vim-open-googletranslate')
   call minpac#add('honza/vim-snippets')
-  call minpac#add('jgdavey/vim-blockle')
-  call minpac#add('dhruvasagar/vim-table-mode')
   call minpac#add('nathanaelkane/vim-indent-guides')
   call minpac#add('ntpeters/vim-better-whitespace')
   call minpac#add('terryma/vim-multiple-cursors', {'type': 'opt'})
   call minpac#add('tomtom/tcomment_vim')
   call minpac#add('tpope/vim-surround')
   call minpac#add('junegunn/vim-easy-align')
+  call minpac#add('w0rp/ale')
 
   if has('nvim')
     call minpac#add('Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'})
@@ -42,11 +39,6 @@ if exists('*minpac#init')
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
   call minpac#add('mattn/emmet-vim')
 
-  " style
-  call minpac#add('vim-scripts/vim-airline')
-  call minpac#add('vim-airline/vim-airline-themes')
-  " call minpac#add('altercation/vim-colors-solarized')
-  call minpac#add('nathanaelkane/vim-indent-guides')
   " TODO: vim-devicons を使ってみる
 
   " syntax
@@ -177,31 +169,6 @@ let g:webdevicons_enable_airline_tabline = 1
 " adding to vim-airline's statusline
 let g:webdevicons_enable_airline_statusline = 1
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='papercolor'
-let g:airline_mode_map = {
-  \ '__' : '-',
-  \ 'n'  : 'N',
-  \ 'R'  : 'R',
-  \ 'c'  : 'C',
-  \ 'i'  : 'I',
-  \ 'v'  : 'V',
-  \ 'V'  : 'V',
-  \ ' '  : 'V',
-  \ 's'  : 'S',
-  \ 'S'  : 'S',
-  \  }
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.paste = "\uf0ea"
-let g:airline_symbols.readonly = "\ue0a2"
-let g:airline_symbols.modified = "\uf459"
-let g:airline_symbols.spell = "\uf49e"
-let g:airline_symbols.branch = "\uf418"
-let g:airline_section_x = ''
-
 let g:ale_linters = {
 \   'ruby': ['rubocop'],
 \   'javascript': ['eslint', 'prettier'],
@@ -221,9 +188,6 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
-
-let g:table_mode_corner_corner='|'
-let g:table_mode_header_fillchar='-'
 
 let g:vim_markdown_fenced_languages = [
 \ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'ruby=rb', 'python=py',
