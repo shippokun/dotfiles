@@ -1,80 +1,135 @@
 set encoding=utf-8
 scriptencoding utf-8
-let g:hybrid_use_iTerm_colors=1
-colorscheme hybrid
-set nocompatible
 filetype off
 
-" If installed using Homebrew
-set rtp+=/usr/local/opt/fzf
+" Init:
+" Release autogroup in MyAutoCmd.
+augroup MyyAutoCmd
+  autocmd!
+augroup END
 
-if exists('*minpac#init')
-  " minpac is loaded.
-  call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
+" Utility:
+let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
+let g:is_linux = !g:is_darwin
 
-  " Add about vim plugins
-  call minpac#add('Townk/vim-autoclose')
-  call minpac#add('airblade/vim-gitgutter')
-  call minpac#add('honza/vim-snippets')
-  call minpac#add('nathanaelkane/vim-indent-guides')
-  call minpac#add('ntpeters/vim-better-whitespace')
-  call minpac#add('terryma/vim-multiple-cursors', {'type': 'opt'})
-  call minpac#add('tomtom/tcomment_vim')
-  call minpac#add('tpope/vim-surround')
-  call minpac#add('junegunn/vim-easy-align')
-  call minpac#add('w0rp/ale')
+" Clipboard.
+if g:is_darwin
+  set clipboard=unnamed
+else
+  set clipboard=unnamed, unnamedplus
+end
 
-  if has('nvim')
-    call minpac#add('Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'})
-    call minpac#add('radenling/vim-dispatch-neovim')
-  else
-    call minpac#add('Shougo/deoplete.nvim')
-    call minpac#add('roxma/nvim-yarp')
-    call minpac#add('roxma/vim-hug-neovim-rpc')
-    call minpac#add('prabirshrestha/async.vim')
+" Set path.
+let $CACHE = expand('~/.cache')
+let $CACHE_HOME = expand('$CACHE/vim')
+let $VIM_PATH = expand('~/.vim')
+let $MYVIMRC = expand('~/.vimrc')
+
+" Use minpac.{{{
+set packpath^=$CACHE_HOME
+let s:package_home = $CACHE_HOME . '/pack/packages'
+let s:minpac_dir = s:package_home . '/opt/minpac'
+let s:minpac_download = 0
+if has('vim_starting')
+  if !isdirectory(s:minpac_dir)
+    echo 'Install minpac ...'
+    execute '!git clone --depth 1 https://github.com/k-takata/minpac ' . s:minpac_dir
+    let s:minpac_download = 1
   endif
-
-  " For frontend plugins
-  call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
-  call minpac#add('mattn/emmet-vim')
-
-  " TODO: vim-devicons を使ってみる
-
-  " syntax
-  call minpac#add('ap/vim-css-color')
-  call minpac#add('plasticboy/vim-markdown')
-  call minpac#add('posva/vim-vue')
-  call minpac#add('rust-lang/rust.vim')
-  call minpac#add('tpope/vim-rails')
-  call minpac#add('vim-ruby/vim-ruby')
-
-  " LSP(Language Server Protocol)
-  call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 endif
 
-" Define user commands for updating/cleaning the plugins.
+" minpac init.
+let s:plugins = []
+function! PackInit() abort"
+  packadd minpac
+  call minpac#init({'dir': $CACHE_HOME, 'package_name': 'packages'})
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+  for plugin in s:plugins
+    call minpac#add(plugin[0], plugin[1])
+  endfor
+endfunction
+"}}}
+
+" minpac helper function. {{{
+let s:lazy_plugs = []
+function! s:minpac_add(repo, ...) abort
+  let l:opts = get(a:000, 0, {})
+  if has_key(l:opts, 'if')
+    if ! l:opts.if
+      return
+    endif
+  endif
+
+  let l:name = substitute(a:repo, '^.*/', '', '')
+
+  " packadd on filetype.
+  if has_key(l:opts, 'ft')
+    let l:ft = type(l:opts.ft) == type([]) ? join(l:opts.ft, ',') : l:opts.ft
+    exe printf('au MyAutoCmd FileType %s packadd %s', l:ft, l:name)
+  endif
+
+  " packadd on cmd.
+  if has_key(l:opts, 'cmd')
+    let l:cmd = type(l:opts.cmd) == type([]) ? join(l:opts.cmd, ',') : l:opts.cmd
+    exe printf('au MyAutoCmd CmdUndefined %s packadd %s', l:cmd, l:name)
+  endif
+
+  if has_key(l:opts, 'lazy')
+    if l:opts.lazy
+      call add(s:lazy_plugs, l:name)
+    endif
+  endif
+
+  call add(s:plugins, [a:repo, l:opts])
+endfunction
+"}}}
+
+com! -nargs=+ Pac call <SID>minpac_add(<args>)
+
+" Load lazy plugins.
+let s:idx = 0
+function! PackAddHandler(timer)
+  exe 'packadd ' . s:lazy_plugs[s:idx]
+  let s:idx += 1
+  " doautocmd BufReadPost
+  au! lazy_load_bundle
+  if s:idx == len(s:lazy_plugs)
+    echom 'lazy load done !'
+  endif
+endfunction
+
+" Plugin settings.
+source $VIM_PATH/start.vim
+" source $VIM_PATH/opt.vim
+source $VIM_PATH/lazy.vim
+
+" Define user commands for updating/cleaning the plugins.{{{
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
-packadd minpac
+com! PackClean     call PackInit() | call minpac#clean()
+com! PackUpdate    call PackInit() | call minpac#clean() | call minpac#update() | call minpac#status()
+com! PackListStart call PackInit() | Capture echo minpac#getpackages("", "start")
+com! PackListOpt   call PackInit() | Capture echo minpac#getpackages("", "opt")
+com! PackNameStart call PackInit() | Capture echo minpac#getpackages("", "start", "", 1)
+com! PackNameOpt   call PackInit() | Capture echo minpac#getpackages("", "opt", "", 1)
+" Quit Vim immediately after all updates are finished.
+com! PackUpdateQuit call PackInit() | call minpac#update('', {'do': 'quit'})
 
-filetype on
-filetype indent on
-filetype plugin on
-" ファイル名と内容によてファイルタイプを判別し、ファイルタイププラグインを有効にする
-filetype plugin indent on
-syntax enable
+" Install on initiall setup.
+if s:minpac_download
+  PackUpdate
+endif
+"}}}
 
+" Set options.{{{1
 set backspace=indent,eol,start " http://vim.wikia.com/wiki/Backspace_and_delete_problems
-set encoding=utf-8  " Set encoding
-set fileencoding=utf-8  " Set encoding
+set fileencoding=utf-8
 set hidden " ファイル編集中でもバッファを切り替えれるようにする
-set history=100
+set history=1000
 set hlsearch " 検索結果のハイライト
 set incsearch " 1文字入力ごとに検索を行う
+set colorcolumn=80,130
 set laststatus=2
 set list
 set listchars=tab:»·,trail:·,extends:»,precedes:«,nbsp:%
@@ -103,19 +158,30 @@ set synmaxcol=200 " 一行が200文字以上の場合は解析しないように
 set tabstop=2
 set textwidth=80
 set ttimeoutlen=50
-set wildmenu
+set wildmenu "{{{
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+" Ignore images and log files
+set wildignore+=*.gif,*.jpg,*.png,*.log
+" Ignore bundle and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+" Disable OS X index files
+set wildignore+=.DS_Store
+"}}}
 set wrap
 set mouse=a
 set ttyfast " スクロールが遅い問題の解決
 set virtualedit+=block " 短形選択を行末を超えて選択できるようになる
 set cindent " indent type
 set clipboard=unnamed " OSのクリップボードと共有
-if has("gui_running")
+if has('gui_running')
   set guioptions-=r   " remove right scroll-bar (macvim)
   set macligatures
   set guifont=Fira\ Code\ Retina:h12
 endif
+"1}}}
 
+" オリジナルの設定{{{
 " insertモードから抜ける
 inoremap <silent> jj <ESC>
 inoremap <silent> kk <ESC>
@@ -145,43 +211,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Disable output and VCS files
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-
-" Ignore images and log files
-set wildignore+=*.gif,*.jpg,*.png,*.log
-
-" Ignore bundle and sass cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-
-" Disable OS X index files
-set wildignore+=.DS_Store
-
-" deopleteの設定
-let g:deoplete#enable_at_startup = 1
-
-let g:webdevicons_enable = 1
-let g:webdevicons_enable_nerdtree = 0
-" adding the custom source to unite
-let g:webdevicons_enable_unite = 0
-" adding to vim-airline's tabline
-let g:webdevicons_enable_airline_tabline = 1
-" adding to vim-airline's statusline
-let g:webdevicons_enable_airline_statusline = 1
-
-let g:ale_linters = {
-\   'ruby': ['rubocop'],
-\   'javascript': ['eslint', 'prettier'],
-\   'markdown': ['mdl'],
-\   'json': ['prettier'],
-\   'css': ['prettier'],
-\   'vim': ['vlit'],
-\}
-
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = "\uF05E"
-let g:ale_sign_warning = "\uF071"
-
 " these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
@@ -189,19 +218,10 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
-let g:vim_markdown_fenced_languages = [
-\ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'ruby=rb', 'python=py',
-\ 'markdown=md', 'javascript=js', 'elixir=elixir']
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_new_list_item_indent = 2
-
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
 let g:indent_guides_enable_on_vim_startup = 0
-
-scriptencoding utf-8
 
 augroup debugger_highlight
   autocmd!
@@ -248,12 +268,18 @@ noremap ; :
 
 map ,. :TComment<CR>
 map ., :TComment<CR>
+"}}}
 
-syntax enable
 syntax sync fromstart
 
 " Local configure
-if filereadable($HOME . "/.vimrc.local")
+if filereadable($HOME . '/.vimrc.local')
   source ~/.vimrc.local
 endif
 
+" vimrcの最後にすべき設定
+filetype plugin indent on
+set t_Co=256
+syntax on
+set termguicolors
+colorscheme molokai
