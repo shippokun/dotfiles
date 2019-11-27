@@ -14,43 +14,29 @@ if exists('*minpac#init')
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Add about vim plugins
-  call minpac#add('Townk/vim-autoclose')
-  call minpac#add('airblade/vim-gitgutter')
-  call minpac#add('honza/vim-snippets')
-  call minpac#add('nathanaelkane/vim-indent-guides')
-  call minpac#add('ntpeters/vim-better-whitespace')
+  call minpac#add('Townk/vim-autoclose', {'opt': 'lazy'})
+  call minpac#add('airblade/vim-gitgutter', {'opt': 'lazy'})
+  call minpac#add('honza/vim-snippets', {'opt': 'lazy'})
+  call minpac#add('ntpeters/vim-better-whitespace', {'opt': 'lazy'})
   call minpac#add('terryma/vim-multiple-cursors', {'type': 'opt'})
-  call minpac#add('tomtom/tcomment_vim')
-  call minpac#add('tpope/vim-surround')
-  call minpac#add('junegunn/vim-easy-align')
-  call minpac#add('w0rp/ale')
-
-  if has('nvim')
-    call minpac#add('Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'})
-    call minpac#add('radenling/vim-dispatch-neovim')
-  else
-    call minpac#add('Shougo/deoplete.nvim')
-    call minpac#add('roxma/nvim-yarp')
-    call minpac#add('roxma/vim-hug-neovim-rpc')
-    call minpac#add('prabirshrestha/async.vim')
-  endif
+  call minpac#add('tomtom/tcomment_vim', {'opt': 'lazy'})
+  call minpac#add('tpope/vim-surround', {'opt': 'lazy'})
+  call minpac#add('junegunn/vim-easy-align', {'opt': 'lazy'})
 
   " For frontend plugins
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
   call minpac#add('mattn/emmet-vim')
 
-  " TODO: vim-devicons を使ってみる
-
   " syntax
-  call minpac#add('ap/vim-css-color')
-  call minpac#add('plasticboy/vim-markdown')
-  call minpac#add('posva/vim-vue')
-  call minpac#add('rust-lang/rust.vim')
-  call minpac#add('tpope/vim-rails')
-  call minpac#add('vim-ruby/vim-ruby')
+  call minpac#add('ap/vim-css-color', {'opt': 'lazy'})
+  call minpac#add('plasticboy/vim-markdown', {'opt': 'lazy'})
+  call minpac#add('posva/vim-vue', {'opt': 'lazy'})
+  call minpac#add('rust-lang/rust.vim', {'opt': 'lazy'})
+  call minpac#add('tpope/vim-rails', {'opt': 'lazy'})
+  call minpac#add('vim-ruby/vim-ruby', {'opt': 'lazy'})
 
   " LSP(Language Server Protocol)
-  call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+  call minpac#add('neoclide/coc.nvim', {'branch': 'release', 'opt': 'lazy'})
 endif
 
 " Define user commands for updating/cleaning the plugins.
@@ -82,7 +68,7 @@ set number " 行番号表示
 set numberwidth=5
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から行頭への移動
 set cursorline " カーソルラインのハイライト
-set scrolloff=6
+set scrolloff=10
 set shiftwidth=2
 set expandtab
 set smartindent " 自動インデント
@@ -169,6 +155,31 @@ let g:webdevicons_enable_airline_tabline = 1
 " adding to vim-airline's statusline
 let g:webdevicons_enable_airline_statusline = 1
 
+let g:airline_powerline_fonts = 1
+let g:airline_theme='papercolor'
+let g:airline_mode_map = {
+  \ '__' : '-',
+  \ 'n'  : 'N',
+  \ 'R'  : 'R',
+  \ 'c'  : 'C',
+  \ 'i'  : 'I',
+  \ 'v'  : 'V',
+  \ 'V'  : 'V',
+  \ ' '  : 'V',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \  }
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.paste = "\uf0ea"
+let g:airline_symbols.readonly = "\ue0a2"
+let g:airline_symbols.modified = "\uf459"
+let g:airline_symbols.spell = "\uf49e"
+let g:airline_symbols.branch = "\uf418"
+let g:airline_section_x = ''
+
 let g:ale_linters = {
 \   'ruby': ['rubocop'],
 \   'javascript': ['eslint', 'prettier'],
@@ -199,7 +210,7 @@ let g:vim_markdown_new_list_item_indent = 2
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-let g:indent_guides_enable_on_vim_startup = 0
+" let g:indent_guides_enable_on_vim_startup = 0
 
 scriptencoding utf-8
 
@@ -256,4 +267,3 @@ syntax sync fromstart
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
-
