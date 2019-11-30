@@ -1,7 +1,5 @@
 set encoding=utf-8
 scriptencoding utf-8
-let g:hybrid_use_iTerm_colors=1
-colorscheme hybrid
 set nocompatible
 filetype off
 
@@ -55,7 +53,6 @@ filetype plugin indent on
 syntax enable
 
 set backspace=indent,eol,start " http://vim.wikia.com/wiki/Backspace_and_delete_problems
-set encoding=utf-8  " Set encoding
 set fileencoding=utf-8  " Set encoding
 set hidden " ファイル編集中でもバッファを切り替えれるようにする
 set history=100
@@ -212,7 +209,6 @@ let g:html_indent_tags = 'li\|p'
 
 " let g:indent_guides_enable_on_vim_startup = 0
 
-scriptencoding utf-8
 
 augroup debugger_highlight
   autocmd!
@@ -260,10 +256,16 @@ noremap ; :
 map ,. :TComment<CR>
 map ., :TComment<CR>
 
-syntax enable
 syntax sync fromstart
 
 " Local configure
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
+
+" vimrcの最後にすべき設定
+filetype plugin indent on
+set t_Co=256
+syntax on
+set termguicolors
+colorscheme molokai
