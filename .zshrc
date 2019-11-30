@@ -60,9 +60,12 @@ alias cl="clear"
 alias mkdir="mkdir -p"
 alias chrm="open /Applications/Google\ Chrome.app"
 alias python="python3"
+alias pip ="pip3"
 alias l="exa -lT"
 alias gpom="git pull origin master"
 alias gplo="git pull origin"
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
 
 autoload -U compinit
 compinit
