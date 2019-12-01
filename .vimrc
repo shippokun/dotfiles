@@ -31,7 +31,7 @@ if has('vim_starting')
 endif
 "}}}
 
-if exists('*minpac#init')
+if exists('*minpac#init')"{{{1
   " minpac is loaded.
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -60,21 +60,23 @@ if exists('*minpac#init')
   call minpac#add('neoclide/coc.nvim', {'branch': 'release', 'opt': 'lazy'})
 
   " Hobby
-  call minpac#add('twitvim/twitvim') "{{{
+  call minpac#add('twitvim/twitvim') "{{{2
   let twitvim_enable_python = 1
   let twitvim_browser_cmd = 'chrm'
   let twitvim_force_ssl = 1
   let twitvim_count = 40
   "}}}
 endif
+"}}}
 
-" Define user commands for updating/cleaning the plugins.
+" Define user commands for updating/cleaning the plugins.{{{
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 packadd minpac
+"}}}
 
 " Vim set config.{{{
 set backspace=indent,eol,start " http://vim.wikia.com/wiki/Backspace_and_delete_problems
@@ -185,6 +187,7 @@ let g:vim_markdown_new_list_item_indent = 2
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
+" 自動コマンド{{{
 augroup debugger_highlight
   autocmd!
   autocmd BufEnter *.ex syn match Error "IO.puts\|IO.inspect"
@@ -218,12 +221,12 @@ augroup commit_width
   autocmd Filetype gitcommit setlocal spell textwidth=72
 augroup END
 
-" 折り畳み機能を有効化{{{
+" 折り畳み機能を有効化
 augroup folding_enable
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
   set foldtext=getline(v:foldstart)
-  set fillchars=fold:\ 
+  set fillchars=fold:\ " white spaceは態と残している
   autocmd Colorscheme * hi Folded ctermfg=lightmagenta guifg=lightmagenta
 augroup END
 "}}}
