@@ -71,3 +71,12 @@ export PATH="/usr/local/opt/libarchive/bin:$PATH"
 . $HOME/.asdf/completions/asdf.bash
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+load_if_exists () {
+  if [ -e $1 ]; then
+    source $1
+  fi
+}
+
+load_if_exists "$HOME/.zshrc.local"
+
