@@ -24,34 +24,21 @@ zstyle ':completion:*:default' menu select=2
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-# ヒストリの共有の有効化
-setopt share_history
-# 直前と同じコマンドをヒストリに追加しない
-setopt hist_ignore_dups
-# ヒストリに追加されるコマンドが古いものと同じなら古いものを削除
-setopt hist_ignore_all_dups
-# 複数のzshを同時に使う時などhistoryファイルを上書きせずに追加
-setopt append_history
-#タブキーの連打で自動的にメニュー補完
-setopt auto_menu
-# cdを使わずにディレクトリを移動できる
-setopt auto_cd
-# "cd -"の段階でTabを押すと、ディレクトリの履歴が見れる
-setopt auto_pushd
-# コマンドの打ち間違いを指摘してくれる
-setopt correct
-# rm *で確認
-setopt rm_star_wait
-#  補完リストが多いときは尋ねない
-LISTMAX=1000
-# "|,:"を単語の一部とみなさない
-WORDCHARS="$WORDCHARS|:"
-#入力途中の履歴補完を有効化する
-autoload history-search-end
-# 改行コードで終らない出力もちゃんと出力する
-setopt no_promptcr
-# 補完候補がないときにビープ音を鳴らさない
-setopt no_beep
+setopt share_history # ヒストリの共有の有効化
+setopt hist_ignore_dups # 直前と同じコマンドをヒストリに追加しない
+setopt hist_ignore_all_dups # ヒストリに追加されるコマンドが古いものと同じなら古いものを削除
+setopt append_history # 複数のzshを同時に使う時などhistoryファイルを上書きせずに追加
+setopt auto_menu # タブキーの連打で自動的にメニュー補完
+setopt auto_cd # cdを使わずにディレクトリを移動できる
+setopt auto_pushd # "cd -"の段階でTabを押すと、ディレクトリの履歴が見れる
+setopt correct # コマンドの打ち間違いを指摘してくれる
+setopt rm_star_wait # rm *で確認
+LISTMAX=1000 # 補完リストが多いときは尋ねない
+WORDCHARS="$WORDCHARS|:" # "|,:"を単語の一部とみなさない
+autoload history-search-end #入力途中の履歴補完を有効化する
+setopt no_promptcr # 改行コードで終らない出力もちゃんと出力する
+setopt no_beep # 補完候補がないときにビープ音を鳴らさない
+setopt HIST_REDUCE_BLANKS   # 余分な空白は詰めて記録
 
 alias ls="ls -G"
 alias la="ls -a"
