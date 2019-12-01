@@ -223,7 +223,7 @@ augroup folding_enable
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
   set foldtext=getline(v:foldstart)
-  set fillchars=fold:\
+  set fillchars=fold:\ 
   autocmd Colorscheme * hi Folded ctermfg=lightmagenta guifg=lightmagenta
 augroup END
 "}}}
