@@ -219,10 +219,13 @@ augroup commit_width
 augroup END
 
 " 折り畳み機能を有効化{{{
-au FileType vim setlocal foldmethod=marker
-set foldtext=getline(v:foldstart)
-set fillchars=fold:\
-au Colorscheme * hi Folded ctermfg=lightmagenta guifg=lightmagenta
+augroup folding_enable
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+  set foldtext=getline(v:foldstart)
+  set fillchars=fold:\
+  autocmd Colorscheme * hi Folded ctermfg=lightmagenta guifg=lightmagenta
+augroup END
 "}}}
 
 " move windows with hjkl
@@ -241,7 +244,7 @@ map ., :TComment<CR>
 syntax sync fromstart
 
 " Local configure
-if filereadable($HOME . "/.vimrc.local")
+if filereadable($HOME . '/.vimrc.local')
   source ~/.vimrc.local
 endif
 
