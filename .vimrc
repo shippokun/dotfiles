@@ -45,6 +45,7 @@ if exists('*minpac#init')"{{{1
   call minpac#add('tomtom/tcomment_vim')
   call minpac#add('tpope/vim-surround')
   call minpac#add('junegunn/vim-easy-align')
+  call minpac#add('w0rp/ale')
 
   " For frontend plugins
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
