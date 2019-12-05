@@ -18,6 +18,8 @@ let $CACHE = expand('~/.cache')
 let $CACHE_HOME = expand('$CACHE/vim')
 let $VIM_PATH = expand('~/.vim')
 let $MYVIMRC = expand('~/.vimrc')
+" If installed using Homebrew
+set runtimepath+=/usr/local/opt/fzf
 
 " Use minpac.{{{
 set packpath^=$CACHE_HOME
@@ -31,7 +33,8 @@ if has('vim_starting')
 endif
 "}}}
 
-if exists('*minpac#init')"{{{1
+" Init minpac.{{{
+if exists('*minpac#init')
   " minpac is loaded.
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -53,6 +56,11 @@ if exists('*minpac#init')"{{{1
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
   call minpac#add('mattn/emmet-vim')
 
+  " Style
+  call minpac#add('vim-airline/vim-airline')
+  call minpac#add('vim-airline/vim-airline-themes')
+  call minpac#add('ryanoasis/vim-devicons')
+
   " Syntax
   call minpac#add('ap/vim-css-color')
   call minpac#add('plasticboy/vim-markdown')
@@ -63,12 +71,7 @@ if exists('*minpac#init')"{{{1
   call minpac#add('neoclide/coc.nvim', {'branch': 'release', 'opt': 'lazy'})
 
   " Hobby
-  call minpac#add('twitvim/twitvim') "{{{2
-  let twitvim_enable_python = 1
-  let twitvim_browser_cmd = 'chrm'
-  let twitvim_force_ssl = 1
-  let twitvim_count = 40
-  "}}}
+  call minpac#add('twitvim/twitvim')
 endif
 "}}}
 
@@ -110,6 +113,8 @@ set nowritebackup
 set lazyredraw " マクロなどの途中経過を描画しない
 set loadplugins
 set showcmd
+set spelllang=en_us,cjk " 日本語がエラーマークされるのを防ぐ
+set spell
 set splitright
 set softtabstop=2
 set synmaxcol=200 " 一行が200文字以上の場合は解析しないようにする
@@ -123,55 +128,92 @@ set ttyfast " スクロールが遅い問題の解決
 set virtualedit+=block " 短形選択を行末を超えて選択できるようになる
 set cindent " indent type
 set clipboard=unnamed " OSのクリップボードと共有
-if has("gui_running")
+if has('gui_running')
   set guioptions-=r   " remove right scroll-bar (macvim)
   set macligatures
   set guifont=Fira\ Code\ Retina:h12
 endif
 "}}}
 
-" insertモードから抜ける
-inoremap <silent> jj <ESC>
-inoremap <silent> kk <ESC>
-
-" ハイライトを消す
-nnoremap <silent> <Esc><Esc> :noh<CR>
-
-" j, k による移動を折り返されたテキストでも自然に振る舞うように変更
-nnoremap j gj
-nnoremap k gk
-
-" vを二回で行末まで選択
-vnoremap v $h
-
-" TABにて対応ペアにジャンプ
-nnoremap <Tab> %
-vnoremap <Tab> %
-
-" 1つ前のバッファに切り替え
-nnoremap <silent> <C-j> :bprev<CR>
-" 1つ後のバッファに切り替え
-nnoremap <silent> <C-k> :bnext<CR>
-
-vnoremap <silent> <Enter> :EasyAlign<cr>
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-
 " Ignore images and log files
 set wildignore+=*.gif,*.jpg,*.png,*.log
-
 " Ignore bundle and sass cache
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-
 " Disable OS X index files
 set wildignore+=.DS_Store
 
 let g:indentLine_faster = 1
+
+let g:ale_linters = {
+\   'javascript': ['eslint', 'prettier'],
+\   'json': ['prettier'],
+\   'css': ['prettier'],
+\}
+
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = "\uF05E"
+let g:ale_sign_warning = "\uF071"
+
+let twitvim_enable_python = 1
+let twitvim_browser_cmd = 'chrm'
+let twitvim_force_ssl = 1
+let twitvim_count = 40
+
+" airline options{{{
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 0
+" adding the custom source to unite
+let g:webdevicons_enable_unite = 0
+" adding the column to vimfiler
+let g:webdevicons_enable_vimfiler = 0
+" adding to vim-airline's tabline
+let g:webdevicons_enable_airline_tabline = 1
+" adding to vim-airline's statusline
+let g:webdevicons_enable_airline_statusline = 1
+" ctrlp glyphs
+let g:webdevicons_enable_ctrlp = 0
+" adding to flagship's statusline
+let g:webdevicons_enable_flagship_statusline = 0
+" turn on/off file node glyph decorations (not particularly useful)
+let g:WebDevIconsUnicodeDecorateFileNodes = 1
+" use double-width(1) or single-width(0) glyphs
+" only manipulates padding, has no effect on terminal or set(guifont) font
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+" whether or not to show the nerdtree brackets around flags
+let g:webdevicons_conceal_nerdtree_brackets = 1
+" the amount of space to use after the glyph character (default ' ')
+let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+" Force extra padding in NERDTree so that the filetype icons line up vertically
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 0
+
+let g:airline_powerline_fonts = 1
+let g:airline_theme='papercolor'
+let g:airline_mode_map = {
+  \ '__' : '-',
+  \ 'n'  : 'N',
+  \ 'i'  : 'I',
+  \ 'R'  : 'R',
+  \ 'c'  : 'C',
+  \ 'v'  : 'V',
+  \ 'V'  : 'V',
+  \ '' : 'V',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \ '' : 'S',
+  \ }
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.paste = "\uf0ea"
+let g:airline_symbols.readonly = "\ue0a2"
+let g:airline_symbols.modified = "\uf459"
+let g:airline_symbols.spell = "\uf49e"
+let g:airline_symbols.branch = "\uf418"
+let g:airline_section_x = ''
+"}}}
 
 " 自動コマンド{{{
 augroup debugger_highlight
@@ -217,15 +259,57 @@ augroup folding_enable
 augroup END
 "}}}
 
+" insertモードから抜ける
+inoremap <silent> jj <ESC>
+inoremap <silent> kk <ESC>
+
+" ハイライトを消す
+nnoremap <silent> <Esc><Esc> :noh<CR>
+
+" j, k による移動を折り返されたテキストでも自然に振る舞うように変更
+nnoremap j gj
+nnoremap k gk
+
+" vを二回で行末まで選択
+vnoremap v $h
+
+" TABにて対応ペアにジャンプ
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+" 1つ前のバッファに切り替え
+nnoremap <silent> <C-j> :bprev<CR>
+" 1つ後のバッファに切り替え
+nnoremap <silent> <C-k> :bnext<CR>
+
+vnoremap <silent> <Enter> :EasyAlign<cr>
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> ]w <Plug>(ale_next)
+
 " move windows with hjkl
 nnoremap <silent> <C-H> :wincmd h<CR>
 nnoremap <silent> <C-J> :wincmd j<CR>
 nnoremap <silent> <C-K> :wincmd k<CR>
 nnoremap <silent> <C-L> :wincmd l<CR>
 
+nnoremap <silent> <C-b> :call fzf#run({
+  \   'source':  reverse(<sid>buflist()),
+  \   'sink':    function('<sid>bufopen'),
+  \   'options': '+m',
+  \   'down':    len(<sid>buflist()) + 2
+  \ })<CR>
+
 noremap Q <Nop>
 noremap q: :q
 noremap ; :
+
+nnoremap <silent> <C-p> :FZF<CR>
+vmap <Enter> <Plug>(EasyAlign)
 
 map ,. :TComment<CR>
 map ., :TComment<CR>
