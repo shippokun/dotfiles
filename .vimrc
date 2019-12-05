@@ -110,7 +110,6 @@ set nowritebackup
 set lazyredraw " マクロなどの途中経過を描画しない
 set loadplugins
 set showcmd
-set spell
 set splitright
 set softtabstop=2
 set synmaxcol=200 " 一行が200文字以上の場合は解析しないようにする
@@ -172,24 +171,7 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Disable OS X index files
 set wildignore+=.DS_Store
 
-" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
-
-let g:vim_markdown_fenced_languages = [
-\ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'ruby=rb', 'python=py',
-\ 'markdown=md', 'javascript=js', 'elixir=elixir']
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_new_list_item_indent = 2
-
 let g:indentLine_faster = 1
-
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
 
 " 自動コマンド{{{
 augroup debugger_highlight
