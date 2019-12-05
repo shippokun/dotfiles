@@ -40,6 +40,10 @@ setopt no_promptcr # 改行コードで終らない出力もちゃんと出力�
 setopt no_beep # 補完候補がないときにビープ音を鳴らさない
 setopt HIST_REDUCE_BLANKS   # 余分な空白は詰めて記録
 
+if [ "$(uname 2> /dev/null)" = "Darwin" ]; then
+  alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
+fi
+
 alias ls="ls -G"
 alias la="ls -a"
 alias ll="ls -lh"
