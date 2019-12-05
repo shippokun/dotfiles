@@ -47,6 +47,7 @@ if exists('*minpac#init')"{{{1
   call minpac#add('junegunn/vim-easy-align')
   call minpac#add('w0rp/ale')
   call minpac#add('Yggdroot/indentLine')
+  call minpac#add('tpope/vim-projectionist')
 
   " For frontend plugins
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
