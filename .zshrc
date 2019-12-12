@@ -57,6 +57,7 @@ alias gpom="git pull origin master"
 alias gplo="git pull origin"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
+alias tigrc="vim ~/.tigrc"
 alias v="vim"
 alias g="git"
 

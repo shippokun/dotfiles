@@ -99,7 +99,7 @@ set number " 行番号表示
 set numberwidth=5
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から行頭への移動
 set cursorline " カーソルラインのハイライト
-set scrolloff=10
+set scrolloff=5
 set shiftwidth=2
 set expandtab
 set smartindent " 自動インデント
@@ -145,6 +145,21 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 set wildignore+=.DS_Store
 
 let g:indentLine_faster = 1
+
+let g:coc_global_extensions = [
+\   'coc-lists'
+\,  'coc-json'
+\,  'coc-html'
+\,  'coc-css'
+\,  'coc-prettier'
+\,  'coc-git'
+\,  'coc-eslint'
+\,  'coc-xml'
+\,  'coc-jest'
+\,  'coc-inline-jest'
+\,  'coc-yaml'
+\,  'coc-webpack'
+\,  'coc-markdownlint']
 
 let g:ale_linters = {
 \   'javascript': ['eslint', 'prettier'],
@@ -247,6 +262,15 @@ augroup END
 augroup commit_width
   autocmd!
   autocmd Filetype gitcommit setlocal spell textwidth=72
+augroup END
+
+" カーソルのハイライトをlazyに
+augroup cursorline_highlight
+  let s:cur_f = 0
+  autocmd WinEnter * setlocal cursorline | let s:cur_f = 0
+  autocmd WinLeave * setlocal nocursorline
+  autocmd CursorHold,CursorHoldI * setlocal cursorline | let s:cur_f = 1
+  autocmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline | endif
 augroup END
 
 " 折り畳み機能を有効化
