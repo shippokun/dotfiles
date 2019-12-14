@@ -117,6 +117,7 @@ noremap ; :
 noremap Q <Nop>
 xmap S <Plug>VSurround
 nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> \ig <Plug>IndentGuidesToggle
 nmap \p <Plug>(Prettier)
 nmap <silent> \s  :exe ".,+".v:count" StripWhitespace"
 xmap <silent> \s :StripWhitespace
@@ -465,10 +466,33 @@ set mouse=a
 set packpath=~/.cache/vim,~/.vim,/usr/local/share/vim/vimfiles,/usr/local/share/vim/vim81,/usr/local/share/vim/vimfiles/after,~/.vim/after
 set runtimepath=
 set runtimepath+=~/.vim
+set runtimepath+=~/.vim/pack/minpac/start/vim-vue
+set runtimepath+=~/.vim/pack/minpac/start/vim-surround
+set runtimepath+=~/.vim/pack/minpac/start/vim-snippets
+set runtimepath+=~/.vim/pack/minpac/start/vim-prettier
+set runtimepath+=~/.vim/pack/minpac/start/vim-markdown
+set runtimepath+=~/.vim/pack/minpac/start/vim-gitgutter
+set runtimepath+=~/.vim/pack/minpac/start/vim-easy-align
+set runtimepath+=~/.vim/pack/minpac/start/vim-css-color
+set runtimepath+=~/.vim/pack/minpac/start/vim-better-whitespace
+set runtimepath+=~/.vim/pack/minpac/start/vim-autoclose
+set runtimepath+=~/.vim/pack/minpac/start/tcomment_vim
+set runtimepath+=~/.vim/pack/minpac/start/rust.vim
+set runtimepath+=~/.vim/pack/minpac/start/emmet-vim
 set runtimepath+=~/.vim/pack/minpac/opt/minpac
 set runtimepath+=/usr/local/share/vim/vimfiles
 set runtimepath+=/usr/local/share/vim/vim81
 set runtimepath+=~/.cache/vim/pack/minpac/opt/minpac
+set runtimepath+=~/.cache/vim/pack/packages/start/vim-surround
+set runtimepath+=~/.cache/vim/pack/packages/start/vim-snippets
+set runtimepath+=~/.cache/vim/pack/packages/start/vim-indent-guides
+set runtimepath+=~/.cache/vim/pack/packages/start/vim-gitgutter
+set runtimepath+=~/.cache/vim/pack/packages/start/vim-easy-align
+set runtimepath+=~/.cache/vim/pack/packages/start/vim-better-whitespace
+set runtimepath+=~/.cache/vim/pack/packages/start/vim-autoclose
+set runtimepath+=~/.cache/vim/pack/packages/start/tcomment_vim
+set runtimepath+=~/.cache/vim/pack/packages/start/indentLine
+set runtimepath+=~/.cache/vim/pack/packages/start/ale
 set runtimepath+=~/.cache/vim/pack/minpac/start/vim-vue
 set runtimepath+=~/.cache/vim/pack/minpac/start/vim-surround
 set runtimepath+=~/.cache/vim/pack/minpac/start/vim-snippets
@@ -492,6 +516,10 @@ set runtimepath+=~/.cache/vim/pack/minpac/start/emmet-vim
 set runtimepath+=~/.cache/vim/pack/minpac/start/coc.nvim
 set runtimepath+=~/.cache/vim/pack/minpac/start/ale
 set runtimepath+=~/.cache/vim/pack/packages/opt/minpac
+set runtimepath+=~/.vim/pack/minpac/start/vim-markdown/after
+set runtimepath+=~/.vim/pack/minpac/start/vim-css-color/after
+set runtimepath+=~/.vim/pack/minpac/start/rust.vim/after
+set runtimepath+=~/.cache/vim/pack/packages/start/indentLine/after
 set runtimepath+=~/.cache/vim/pack/minpac/start/vim-markdown/after
 set runtimepath+=~/.cache/vim/pack/minpac/start/vim-css-color/after
 set runtimepath+=~/.cache/vim/pack/minpac/start/rust.vim/after
@@ -522,7 +550,7 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/dotfiles
+cd ~/Documents/dotfiles
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -623,7 +651,7 @@ setlocal indentexpr=
 setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=git\ --git-dir='/Users/iwamoto.keigo/dotfiles/.git'\ show
+setlocal keywordprg=git\ --git-dir='/Users/keigo/Documents/dotfiles/.git'\ show
 setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
@@ -640,7 +668,7 @@ setlocal number
 set numberwidth=5
 setlocal numberwidth=5
 setlocal omnifunc=
-setlocal path=~/dotfiles/.git,~/dotfiles,~/dotfiles/.git,~/dotfiles,
+setlocal path=~/Documents/dotfiles/.git,~/Documents/dotfiles,~/Documents/dotfiles/.git,~/Documents/dotfiles,
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -687,12 +715,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 25) / 50)
+let s:l = 1 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 027|
+normal! 0
 tabnext 1
 badd +0 .git/COMMIT_EDITMSG
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0

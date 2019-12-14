@@ -68,7 +68,7 @@ if exists('*minpac#init')
   call minpac#add('rust-lang/rust.vim')
 
   " LSP(Language Server Protocol)
-  call minpac#add('neoclide/coc.nvim', {'branch': 'release', 'opt': 'lazy'})
+  call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 
   " Hobby
   call minpac#add('twitvim/twitvim')
@@ -160,6 +160,10 @@ let g:coc_global_extensions = [
 \,  'coc-yaml'
 \,  'coc-webpack'
 \,  'coc-markdownlint']
+
+let g:LanguageClient_serverCommands = {
+\ 'vue': ['vls']
+\ }
 
 let g:ale_linters = {
 \   'javascript': ['eslint', 'prettier'],
