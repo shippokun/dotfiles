@@ -3,3 +3,4 @@
 .vim/.netrwhist
 tmux-client*
 .vim/pack/*
+.vim/sessions/*
