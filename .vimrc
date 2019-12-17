@@ -306,9 +306,9 @@ nnoremap <Tab> %
 vnoremap <Tab> %
 
 " 1つ前のバッファに切り替え
-nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-J> :bprev<CR>
 " 1つ後のバッファに切り替え
-nnoremap <silent> <C-k> :bnext<CR>
+nnoremap <silent> <C-K> :bnext<CR>
 
 vnoremap <silent> <Enter> :EasyAlign<cr>
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -320,10 +320,10 @@ nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 
 " move windows with hjkl
-nnoremap <silent> <C-H> :wincmd h<CR>
-nnoremap <silent> <C-J> :wincmd j<CR>
-nnoremap <silent> <C-K> :wincmd k<CR>
-nnoremap <silent> <C-L> :wincmd l<CR>
+" nnoremap <silent> <C-H> :wincmd h<CR>
+" nnoremap <silent> <C-J> :wincmd j<CR>
+" nnoremap <silent> <C-K> :wincmd k<CR>
+" nnoremap <silent> <C-L> :wincmd l<CR>
 
 nnoremap <silent> <C-b> :call fzf#run({
   \   'source':  reverse(<sid>buflist()),
