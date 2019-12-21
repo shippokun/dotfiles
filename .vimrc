@@ -51,6 +51,7 @@ if exists('*minpac#init')
   call minpac#add('w0rp/ale')
   call minpac#add('Yggdroot/indentLine')
   call minpac#add('tpope/vim-projectionist')
+  call minpac#add('deris/vim-shot-f')
 
   " For frontend plugins
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
