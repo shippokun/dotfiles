@@ -320,6 +320,14 @@ nmap ga <Plug>(EasyAlign)
 nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 
+" 検索後にジャンプした際に検索単語を画面中央に持ってくる
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
 " move windows with hjkl
 " nnoremap <silent> <C-H> :wincmd h<CR>
 " nnoremap <silent> <C-J> :wincmd j<CR>
@@ -335,7 +343,6 @@ nnoremap <silent> <C-b> :call fzf#run({
 
 noremap Q <Nop>
 noremap q: :q
-noremap ; :
 
 nnoremap <silent> <C-p> :FZF<CR>
 vmap <Enter> <Plug>(EasyAlign)
