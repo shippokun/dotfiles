@@ -81,8 +81,8 @@ load_if_exists () {
   fi
 }
 
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS='--layout=reverse --inline-info'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!**/.DS_Store" --glob "!**/node_modules/*" --glob "!vendor/*" 2> /dev/null'
+export FZF_DEFAULT_OPTS='--inline-info --height 40% --border'
 
 load_if_exists "$HOME/.zshrc.local"
 
