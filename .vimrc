@@ -290,6 +290,7 @@ augroup END
 
 " insertモードから抜ける
 inoremap <silent> jj <ESC>
+inoremap <silent> っj <ESC>
 inoremap <silent> kk <ESC>
 
 " ハイライトを消す
@@ -298,6 +299,9 @@ nnoremap <silent> <Esc><Esc> :noh<CR>
 " j, k による移動を折り返されたテキストでも自然に振る舞うように変更
 nnoremap j gj
 nnoremap k gk
+
+" ヤンクレジスタに格納されるコマンド
+let g:yankring_n_keys = 'Y y D'
 
 " vを二回で行末まで選択
 vnoremap v $h
@@ -362,4 +366,4 @@ filetype plugin indent on
 set t_Co=256
 syntax on
 set termguicolors
-colorscheme molokai
+colorscheme hybrid
