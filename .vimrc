@@ -64,7 +64,6 @@ if exists('*minpac#init')
 
   " Syntax
   call minpac#add('ap/vim-css-color')
-  call minpac#add('plasticboy/vim-markdown')
   call minpac#add('posva/vim-vue')
   call minpac#add('rust-lang/rust.vim')
 
@@ -146,6 +145,8 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 set wildignore+=.DS_Store
 
 let g:indentLine_faster = 1
+
+let g:user_emmet_leader_key='<c-y>'
 
 let g:coc_global_extensions = [
 \   'coc-lists'
@@ -300,6 +301,9 @@ nnoremap <silent> <Esc><Esc> :noh<CR>
 nnoremap j gj
 nnoremap k gk
 
+" xでヤンクレジスタに格納しない
+nnoremap x "_x
+
 " ヤンクレジスタに格納されるコマンド
 let g:yankring_n_keys = 'Y y D'
 
@@ -309,6 +313,9 @@ vnoremap v $h
 " TABにて対応ペアにジャンプ
 nnoremap <Tab> %
 vnoremap <Tab> %
+
+" インサートモード中に<Ctrl-i>で現在の行から改行する
+:inoremap <C-i> <ESC>o
 
 " 1つ前のバッファに切り替え
 nnoremap <silent> <C-J> :bprev<CR>
