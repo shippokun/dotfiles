@@ -61,6 +61,9 @@ alias tigrc="vim ~/.tigrc"
 alias v="vim"
 alias g="git"
 
+# 不要なファイルを表示しない
+alias tree='tree -a -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
+
 autoload -U compinit
 compinit
 
