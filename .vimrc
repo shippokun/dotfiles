@@ -68,7 +68,6 @@ if exists('*minpac#init')
   call minpac#add('rust-lang/rust.vim')
 
   " LSP(Language Server Protocol)
-  call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 
   " Hobby
   call minpac#add('twitvim/twitvim')
@@ -147,21 +146,6 @@ set wildignore+=.DS_Store
 let g:indentLine_faster = 1
 
 let g:user_emmet_leader_key='<c-y>'
-
-let g:coc_global_extensions = [
-\   'coc-lists'
-\,  'coc-json'
-\,  'coc-html'
-\,  'coc-css'
-\,  'coc-prettier'
-\,  'coc-git'
-\,  'coc-eslint'
-\,  'coc-xml'
-\,  'coc-jest'
-\,  'coc-inline-jest'
-\,  'coc-yaml'
-\,  'coc-webpack'
-\,  'coc-markdownlint']
 
 let g:LanguageClient_serverCommands = {
 \ 'vue': ['vls']
