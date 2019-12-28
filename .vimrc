@@ -68,6 +68,11 @@ if exists('*minpac#init')
   call minpac#add('rust-lang/rust.vim')
 
   " LSP(Language Server Protocol)
+  call minpac#add('prabirshrestha/async.vim')
+  call minpac#add('prabirshrestha/asyncomplete.vim')
+  call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+  call minpac#add('prabirshrestha/vim-lsp')
+  call minpac#add('mattn/vim-lsp-settings')
 
   " Hobby
   call minpac#add('twitvim/twitvim')
