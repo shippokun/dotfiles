@@ -111,7 +111,7 @@ set autoindent
 set nobackup
 set noswapfile " スワップファイルを作らない
 set showmatch " 対応括弧をハイライト表示する
-set matchtime=3 " 対応括弧の表示秒数を3秒にする
+set matchtime=2 " 対応括弧の表示秒数を3秒にする
 set matchpairs& matchpairs+=<:> " 対応括弧に<と>のペアを追加
 set nowritebackup
 set lazyredraw " マクロなどの途中経過を描画しない
@@ -147,6 +147,9 @@ set wildignore+=*.gif,*.jpg,*.png,*.log
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Disable OS X index files
 set wildignore+=.DS_Store
+
+" ヤンクレジスタに格納されるコマンド
+let g:yankring_n_keys = 'Y y D'
 
 let g:indentLine_faster = 1
 
@@ -278,61 +281,36 @@ augroup folding_enable
 augroup END
 "}}}
 
-" insertモードから抜ける
-inoremap <silent> jj <ESC>
-inoremap <silent> っj <ESC>
-inoremap <silent> kk <ESC>
+" トグルでコメント制御
+noremap ,. :TComment<CR>
+noremap ., :TComment<CR>
 
-" ハイライトを消す
-nnoremap <silent> <Esc><Esc> :noh<CR>
+" TABにて対応ペアにジャンプ
+noremap <Tab> %
 
 " j, k による移動を折り返されたテキストでも自然に振る舞うように変更
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
+
+" ハイライトを消す(esc esc)
+nnoremap <silent> <Esc><Esc> :noh<CR>
 
 " xでヤンクレジスタに格納しない
 nnoremap x "_x
-
-" ヤンクレジスタに格納されるコマンド
-let g:yankring_n_keys = 'Y y D'
-
-" vを二回で行末まで選択
-vnoremap v $h
-
-" TABにて対応ペアにジャンプ
-nnoremap <Tab> %
-vnoremap <Tab> %
-
-" インサートモード中に<Ctrl-i>で現在の行から改行する
-:inoremap <C-i> <ESC>o
 
 " 1つ前のバッファに切り替え
 nnoremap <silent> <C-J> :bprev<CR>
 " 1つ後のバッファに切り替え
 nnoremap <silent> <C-K> :bnext<CR>
 
-vnoremap <silent> <Enter> :EasyAlign<cr>
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-nmap <silent> [w <Plug>(ale_previous)
-nmap <silent> ]w <Plug>(ale_next)
+nnoremap <silent> [w <Plug>(ale_previous)
+nnoremap <silent> ]w <Plug>(ale_next)
 
 " 検索後にジャンプした際に検索単語を画面中央に持ってくる
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
 nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
-
-" move windows with hjkl
-" nnoremap <silent> <C-H> :wincmd h<CR>
-" nnoremap <silent> <C-J> :wincmd j<CR>
-" nnoremap <silent> <C-K> :wincmd k<CR>
-" nnoremap <silent> <C-L> :wincmd l<CR>
 
 nnoremap <silent> <C-b> :call fzf#run({
   \   'source':  reverse(<sid>buflist()),
@@ -341,14 +319,30 @@ nnoremap <silent> <C-b> :call fzf#run({
   \   'down':    len(<sid>buflist()) + 2
   \ })<CR>
 
-noremap Q <Nop>
-noremap q: :q
+nnoremap Q <Nop>
+nnoremap q: :q
 
 nnoremap <silent> <C-p> :FZF<CR>
-vmap <Enter> <Plug>(EasyAlign)
 
-map ,. :TComment<CR>
-map ., :TComment<CR>
+" insertモードから抜ける
+inoremap <silent> jj <ESC>
+inoremap <silent> っj <ESC>
+inoremap <silent> kk <ESC>
+
+" insert mode中にemacsのキーバインドを流用
+inoremap <C-a> <C-o>I
+inoremap <C-e> <End>
+
+" vを二回で行末まで選択
+vnoremap v $h
+
+vnoremap <silent> <Enter> :EasyAlign<cr>
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+vnoremap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nnoremap ga <Plug>(EasyAlign)
+
+vnoremap <Enter> <Plug>(EasyAlign)
 
 syntax sync fromstart
 
