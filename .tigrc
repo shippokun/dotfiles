@@ -20,13 +20,16 @@ set mouse = true
 set refresh-mode = auto
 
 # + で commit --amend
-bind generic +      !git commit --amend --allow-empty
+bind generic + !git commit --amend --allow-empty
 
 # ^ で reset --soft
-bind generic ^      ?git reset --soft HEAD^
+bind generic ^ ?git reset --soft HEAD^
 
 # Ctrl-g でリフレッシュ
 bind generic <Ctrl-g> refresh
 
 # 差分表示に diff-highlight を使う (要 tig 2.2.1 以降. diff-highlight が $PATH にあること)
 set diff-highlight = true
+
+# status view中に A で commit --amend --no-edit
+bind status A !git commit --amend --no-edit
