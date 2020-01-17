@@ -52,6 +52,18 @@ if exists('*minpac#init')
   call minpac#add('Yggdroot/indentLine')
   call minpac#add('tpope/vim-projectionist')
   call minpac#add('deris/vim-shot-f')
+  call minpac#add('mattn/vim-sqlfmt')
+  call minpac#add('Shougo/neosnippet.vim')
+  call minpac#add('Shougo/neosnippet-snippets')
+  call minpac#add('Shougo/deoplete.nvim')
+  call minpac#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'do': 'bash install.sh',
+    \ })
+  if !has('nvim')
+    call minpac#add('roxma/nvim-yarp')
+    call minpac#add('roxma/vim-hug-neovim-rpc')
+  endif
 
   " For frontend plugins
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
@@ -154,6 +166,9 @@ let g:yankring_n_keys = 'Y y D'
 let g:indentLine_faster = 1
 
 let g:user_emmet_leader_key='<c-y>'
+
+" for deoplete.nvim
+let g:deoplete#enable_at_startup = 1
 
 let g:LanguageClient_serverCommands = {
 \ 'vue': ['vls']
@@ -281,6 +296,7 @@ augroup folding_enable
 augroup END
 "}}}
 
+" mapping設定{{{
 " トグルでコメント制御
 noremap ,. :TComment<CR>
 noremap ., :TComment<CR>
@@ -329,6 +345,11 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 inoremap <silent> kk <ESC>
 
+" 1つ前のバッファに切り替え
+inoremap <silent> <C-J> <C-o>:bprev<CR>
+" 1つ後のバッファに切り替え
+inoremap <silent> <C-K> <C-o>:bnext<CR>
+
 " insert mode中にemacsのキーバインドを流用
 inoremap <C-a> <C-o>I
 inoremap <C-e> <End>
@@ -343,6 +364,7 @@ vnoremap ga <Plug>(EasyAlign)
 nnoremap ga <Plug>(EasyAlign)
 
 vnoremap <Enter> <Plug>(EasyAlign)
+"}}}
 
 syntax sync fromstart
 
@@ -356,4 +378,5 @@ filetype plugin indent on
 set t_Co=256
 syntax on
 set termguicolors
-colorscheme hybrid
+set background=dark
+colorscheme hybrid "hybrid, delek, torte, desert
