@@ -73,6 +73,7 @@ if exists('*minpac#init')
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('ryanoasis/vim-devicons')
+  call minpac#add('rafi/awesome-vim-colorschemes')
 
   " Syntax
   call minpac#add('ap/vim-css-color')
@@ -379,4 +380,4 @@ set t_Co=256
 syntax on
 set termguicolors
 set background=dark
-colorscheme hybrid "hybrid, delek, torte, desert
+colorscheme solarized8 "hybrid, delek, torte, desert
