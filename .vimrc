@@ -53,21 +53,21 @@ if exists('*minpac#init')
   call minpac#add('tpope/vim-projectionist')
   call minpac#add('deris/vim-shot-f')
   call minpac#add('mattn/vim-sqlfmt')
-  call minpac#add('Shougo/neosnippet.vim')
-  call minpac#add('Shougo/neosnippet-snippets')
-  call minpac#add('Shougo/deoplete.nvim')
-  call minpac#add('autozimu/LanguageClient-neovim', {
-    \ 'rev': 'next',
-    \ 'do': 'bash install.sh',
-    \ })
-  if !has('nvim')
-    call minpac#add('roxma/nvim-yarp')
-    call minpac#add('roxma/vim-hug-neovim-rpc')
-  endif
+  call minpac#add('lambdalisue/fern.vim')
+  call minpac#add('editorconfig/editorconfig-vim')
 
   " For frontend plugins
   call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
   call minpac#add('mattn/emmet-vim')
+
+  " For deoplete
+  call minpac#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call minpac#add('roxma/nvim-yarp')
+    call minpac#add('roxma/vim-hug-neovim-rpc')
+  endif
+  call minpac#add('Shougo/neosnippet.vim')
+  call minpac#add('Shougo/neosnippet-snippets')
 
   " Style
   call minpac#add('vim-airline/vim-airline')
@@ -295,6 +295,17 @@ augroup folding_enable
   set fillchars=fold:\ " white spaceは態と残している
   autocmd Colorscheme * hi Folded ctermfg=lightmagenta guifg=lightmagenta
 augroup END
+
+" Fernの設定
+function! s:init_fern() abort
+  noremap <buffer> <Plug>(fern-action-hidden-set) <Plug>(fern-action-open)
+endfunction
+
+augroup fern_setting
+  autocmd!
+  " autocmd FileType * nested Fern . -reveal=% -drawer
+  autocmd FileType fern call s:init_fern()
+augroup END
 "}}}
 
 " mapping設定{{{
@@ -338,6 +349,7 @@ nnoremap <silent> <C-b> :call fzf#run({
 
 nnoremap Q <Nop>
 nnoremap q: :q
+nnoremap :Q :q
 
 nnoremap <silent> <C-p> :FZF<CR>
 
@@ -380,4 +392,4 @@ set t_Co=256
 syntax on
 set termguicolors
 set background=dark
-colorscheme solarized8 "hybrid, delek, torte, desert
+colorscheme desert "hybrid, delek, torte, desert
