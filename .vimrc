@@ -56,10 +56,6 @@ if exists('*minpac#init')
   call minpac#add('Shougo/neosnippet.vim')
   call minpac#add('Shougo/neosnippet-snippets')
   call minpac#add('Shougo/deoplete.nvim')
-  call minpac#add('autozimu/LanguageClient-neovim', {
-    \ 'rev': 'next',
-    \ 'do': 'bash install.sh',
-    \ })
   if !has('nvim')
     call minpac#add('roxma/nvim-yarp')
     call minpac#add('roxma/vim-hug-neovim-rpc')
@@ -130,13 +126,10 @@ set nowritebackup
 set lazyredraw " マクロなどの途中経過を描画しない
 set loadplugins
 set showcmd
-set spelllang=en_us,cjk " 日本語がエラーマークされるのを防ぐ
-set spell
 set splitright
 set softtabstop=2
 set synmaxcol=200 " 一行が200文字以上の場合は解析しないようにする
 set tabstop=2
-set textwidth=80
 set ttimeoutlen=50
 set wildmenu
 set wrap
@@ -295,6 +288,13 @@ augroup folding_enable
   set fillchars=fold:\ " white spaceは態と残している
   autocmd Colorscheme * hi Folded ctermfg=lightmagenta guifg=lightmagenta
 augroup END
+
+" htmlの閉じタグ補完
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+augroup END
 "}}}
 
 " mapping設定{{{
@@ -379,5 +379,5 @@ filetype plugin indent on
 set t_Co=256
 syntax on
 set termguicolors
-set background=dark
-colorscheme solarized8 "hybrid, delek, torte, desert
+set background=light
+colorscheme desert "hybrid, delek, torte, desert

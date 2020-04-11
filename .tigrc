@@ -33,3 +33,10 @@ set diff-highlight = true
 
 # status view中に A で commit --amend --no-edit
 bind status A !git commit --amend --no-edit
+
+# status view中に a で commit --amend
+bind status a !git commit --amend
+
+# status view中に P で push origin branch
+bind status P ?git push origin %(branch)
+
