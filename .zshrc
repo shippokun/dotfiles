@@ -90,3 +90,7 @@ export FZF_DEFAULT_OPTS='--inline-info --height 40% --border'
 
 load_if_exists "$HOME/.zshrc.local"
 
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"

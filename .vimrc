@@ -56,8 +56,16 @@ if exists('*minpac#init')
   call minpac#add('lambdalisue/fern.vim')
   call minpac#add('editorconfig/editorconfig-vim')
 
+  " For python plugins
+  call minpac#add('davidhalter/jedi-vim')
+  call minpac#add('hynek/vim-python-pep8-indent')
+  call minpac#add('Townk/vim-autoclose')
+  call minpac#add('scrooloose/syntastic')
+
   " For frontend plugins
-  call minpac#add('prettier/vim-prettier', { 'do': '!npm install' })
+  call minpac#add('prettier/vim-prettier', {
+    \ 'do': '!npm install',
+    \ 'branch': 'release/0.x'})
   call minpac#add('mattn/emmet-vim')
 
   " Style
@@ -148,6 +156,19 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Disable OS X index files
 set wildignore+=.DS_Store
 
+" python lint settings{{{
+
+" let g:jedi#force_py_version = '3.8'
+"保存時に自動でチェック
+let g:PyFlakeOnWrite = 1
+let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+let g:PyFlakeDefaultComplexity=10
+
+" syntasticの設定
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+
+"}}}
+
 " ヤンクレジスタに格納されるコマンド
 let g:yankring_n_keys = 'Y y D'
 
@@ -171,15 +192,22 @@ let g:coc_global_extensions = [
 \  'coc-tsserver',
 \  'coc-vetur']
 
+let g:vim_json_syntax_conceal = 0
+
 let g:ale_linters = {
+\   'html': [],
 \   'javascript': ['eslint', 'prettier'],
 \   'json': ['prettier'],
 \   'css': ['prettier'],
+\   'python': ['flake8'],
+\   'vue': ['eslint']
 \}
 
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = "\uF05E"
 let g:ale_sign_warning = "\uF071"
+
+let g:ale_linter_aliases = {'vue': 'css'}
 
 let twitvim_enable_python = 1
 let twitvim_browser_cmd = 'chrm'
@@ -308,6 +336,30 @@ augroup fern_setting
   autocmd!
   " autocmd FileType * nested Fern . -reveal=% -drawer
   autocmd FileType fern call s:init_fern()
+augroup END
+
+augroup jedi_setting
+  autocmd!
+  autocmd FileType python setlocal completeopt-=preview
+augroup END
+
+" ファイルのディレクトリまたは親ディレクトリのいずれかにPipfileがあればpipenv管理下としてパスをセットする
+function! s:addPipenvPath()
+  let pipenv_dir = expand('%:p:h')
+  while pipenv_dir !=# '/'
+    if filereadable(l:pipenv_dir . '/Pipfile')
+      let venv_path = trim(system(printf("sh -c 'cd %s; pipenv --venv'", pipenv_dir)))
+      let g:jedi#virtualenv_path = venv_path
+      return
+    endif
+
+    let pipenv_dir = fnamemodify(pipenv_dir, ':h')
+  endwhile
+endfunction
+
+augroup vimrc-python
+  autocmd!
+  autocmd FileType python :call s:addPipenvPath()
 augroup END
 "}}}
 
