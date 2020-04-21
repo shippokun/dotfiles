@@ -190,6 +190,7 @@ let g:coc_global_extensions = [
 \  'coc-python',
 \  'coc-webpack',
 \  'coc-tsserver',
+\  'coc-docker',
 \  'coc-vetur']
 
 let g:vim_json_syntax_conceal = 0

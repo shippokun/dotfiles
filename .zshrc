@@ -1,21 +1,30 @@
-# Clone zplugin if not exist
-if [[ ! -d ~/.zplugin ]]; then
-  git clone https://github.com/zdharma/zplugin $HOME/.zplugin
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source $HOME/.zplugin/zplugin.zsh
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+# Clone zinit if not exist
+if [[ ! -d ~/.zinit ]]; then
+  git clone https://github.com/zdharma/zinit $HOME/.zinit
+fi
 
+source $HOME/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# カラースキーマ
+ZSH_THEME="cobalt2"
 # 構文のハイライト
-zplugin light zdharma/fast-syntax-highlighting
-zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+zinit light zdharma/fast-syntax-highlighting
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 # タイプ補完
-zplugin light zsh-users/zsh-autosuggestions
-zplugin light zsh-users/zsh-completions
-zplugin light chrissicool/zsh-256color
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light chrissicool/zsh-256color
 # cdコマンド強化用プラグイン
-zplugin light b4b4r07/enhancd
+zinit light b4b4r07/enhancd
 # 大文字小文字関係なく補完
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
 # 補完候補を矢印でも選択可能に
@@ -94,3 +103,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

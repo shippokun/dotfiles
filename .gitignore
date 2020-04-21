@@ -1,6 +1,2 @@
-
-.zplugin/*
-.vim/.netrwhist
-tmux-client*
-.vim/pack/*
-.vim/sessions/*
+.zinit/*
+.vim/**
