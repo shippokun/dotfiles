@@ -7,7 +7,7 @@ fi
 
 # Clone zinit if not exist
 if [[ ! -d ~/.zinit ]]; then
-  git clone https://github.com/zdharma/zinit $HOME/.zinit
+  git clone https://github.com/zdharma/zinit $HOME/.zinit/bin
 fi
 
 source $HOME/.zinit/bin/zinit.zsh
