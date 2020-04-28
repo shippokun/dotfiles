@@ -1,0 +1,12 @@
+[user]
+	name = shippokun
+	email = okashi0tabetai@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+  co = checkout
+  br = branch
+  st = status
