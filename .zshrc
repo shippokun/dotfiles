@@ -10,19 +10,21 @@ if [[ ! -d ~/.zinit ]]; then
   git clone https://github.com/zdharma/zinit $HOME/.zinit/bin
 fi
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 source $HOME/.zinit/bin/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # 構文のハイライト
-zinit light zdharma/fast-syntax-highlighting
+zinit ice wait'!0'; zinit load zdharma/fast-syntax-highlighting
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 # タイプ補完
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
-zinit light chrissicool/zsh-256color
+zinit load zsh-users/zsh-autosuggestions
+zinit ice wait'!0'; zinit load zsh-users/zsh-syntax-highlighting # 実行可能なコマンドに色付け
+zinit ice wait'!0'; zinit load zsh-users/zsh-completions
 # cdコマンド強化用プラグイン
-zinit light b4b4r07/enhancd
+zinit ice wait'!0'; zinit load b4b4r07/enhancd
 # 大文字小文字関係なく補完
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
 # 補完候補を矢印でも選択可能に
@@ -47,9 +49,9 @@ setopt no_promptcr # 改行コードで終らない出力もちゃんと出力�
 setopt no_beep # 補完候補がないときにビープ音を鳴らさない
 setopt HIST_REDUCE_BLANKS   # 余分な空白は詰めて記録
 
-if [ "$(uname 2> /dev/null)" = "Darwin" ]; then
-  alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
-fi
+# if [ "$(uname 2> /dev/null)" = "Darwin" ]; then
+#   alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
+# fi
 
 alias ls="ls -G"
 alias la="ls -a"
@@ -104,3 +106,5 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
