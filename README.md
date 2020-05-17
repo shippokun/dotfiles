@@ -7,3 +7,17 @@ cd dotfiles
 
 ./install.sh
 
+
+
+# まるっと移行した時に必要だった物
+
+- font
+- tig
+- bat
+- rg
+- anyenv
+  - pyenv
+  - nodenv
+
+githubのsshの設定
+fzfのインストール
