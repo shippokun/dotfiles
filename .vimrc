@@ -55,6 +55,7 @@ if exists('*minpac#init')
   call minpac#add('mattn/vim-sqlfmt')
   call minpac#add('lambdalisue/fern.vim')
   call minpac#add('editorconfig/editorconfig-vim')
+  call minpac#add('iberianpig/tig-explorer.vim')
 
   " For python plugins
   call minpac#add('davidhalter/jedi-vim')
@@ -191,6 +192,7 @@ let g:coc_global_extensions = [
 \  'coc-webpack',
 \  'coc-tsserver',
 \  'coc-docker',
+\  'coc-markdownlint',
 \  'coc-vetur']
 
 let g:vim_json_syntax_conceal = 0

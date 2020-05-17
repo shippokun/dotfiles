@@ -22,7 +22,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # タイプ補完
 zinit load zsh-users/zsh-autosuggestions
 zinit ice wait'!0'; zinit load zsh-users/zsh-syntax-highlighting # 実行可能なコマンドに色付け
-zinit ice wait'!0'; zinit load zsh-users/zsh-completions
+# zinit ice wait'!0'; zinit load zsh-users/zsh-completions
 # cdコマンド強化用プラグイン
 zinit ice wait'!0'; zinit load b4b4r07/enhancd
 # 大文字小文字関係なく補完
@@ -86,7 +86,7 @@ function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 eval "$(anyenv init -)"
 export PATH="/usr/local/opt/libarchive/bin:$PATH"
 
-. $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/asdf.sh
 
 load_if_exists () {
   if [ -e $1 ]; then
