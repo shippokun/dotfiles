@@ -77,6 +77,7 @@ if exists('*minpac#init')
   " Syntax
   call minpac#add('ap/vim-css-color')
   call minpac#add('posva/vim-vue')
+  call minpac#add('jparise/vim-graphql')
 
   " LSP(Language Server Protocol)
   call minpac#add('neoclide/coc.nvim', { 'branch': 'release' })
