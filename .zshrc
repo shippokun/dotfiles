@@ -92,6 +92,8 @@ load_if_exists () {
   fi
 }
 
+eval "$(direnv hook zsh)"
+
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!**/.DS_Store" --glob "!**/node_modules/*" --glob "!vendor/*" 2> /dev/null'
 export FZF_DEFAULT_OPTS='--inline-info --height 40% --border'
 
