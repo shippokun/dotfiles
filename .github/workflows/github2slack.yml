@@ -1,0 +1,22 @@
+name: Convert GitHub's mention to Slack's
+
+on:
+  issue_comment:
+    types: [created, edited]
+  pull_request_review_comment:
+    types: [created, edited]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request:
+    types: [review_requested, created, edited]
+
+jobs:
+  message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Convert mention
+        uses: tyankatsu0105/convert-mention-action@v2.0.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
