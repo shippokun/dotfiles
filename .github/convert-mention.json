@@ -1,4 +1,6 @@
 {
-  "shippokun": "Keigo Iwamoto",
-  "AtsukiYokota": "Atsuki Yokota"
+  "users": {
+    "shippokun": "Keigo Iwamoto",
+    "AtsukiYokota": "Atsuki Yokota"
+  }
 }
