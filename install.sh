@@ -11,4 +11,7 @@ do
   ln -s $PWD/"$f" $HOME/"$f"
 done
 
+if [ -d $HOME/.config/karabiner ]; then
+  ln -s $PWD/fn-hjkl-arrow-keys.json $HOME/.config/karabiner/assets/complex_modifications
+fi
 # pip3 install --upgrade pynvim
