@@ -40,3 +40,11 @@ bind status a !git commit --amend
 # status view中に P で push origin branch
 bind status P ?git push origin %(branch)
 
+# status view中に Ctrl-p で push origin branch
+bind status <Ctrl-p> ?git push --set-upstream origin %(branch)
+
+# status view中に = で push origin branch -f
+bind status = ?git push origin %(branch) -f
+
+# status view中に N で npx git-cz
+bind status N !npx git-cz
