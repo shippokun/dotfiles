@@ -1,0 +1,18 @@
+cask_args appdir: "/Applications"
+brew "curl"
+brew "git"
+brew "tig"
+brew "anyenv"
+brew "tree"
+brew "ripgrep"
+brew "bat"
+brew "direnv"
+brew "asdf"
+cask "1password"
+cask "docker"
+cask "google-chrome"
+cask "iterm2"
+cask "visual-studio-code"
+cask "karabiner-elements"
+mas "BetterSnapTool", id: 417375580
+mas "Slack", id: 803453959
