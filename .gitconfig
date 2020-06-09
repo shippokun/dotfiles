@@ -13,3 +13,6 @@
   log = diff-highlight | less
   show = diff-highlight | less
   diff = diff-highlight | less st = status
+[url "github:"]
+  InsteadOf = https://github.com/
+  InsteadOf = git@github.com:
