@@ -1,0 +1,42 @@
+" TABにて対応ペアにジャンプ
+noremap <Tab> %
+
+" j, k による移動を折り返されたテキストでも自然に振る舞うように変更
+noremap j gj
+noremap k gk
+
+" ハイライトを消す(esc esc)
+nnoremap <Esc><Esc> :noh<CR>
+
+" 1つ前のバッファに切り替え
+nnoremap <C-J> :bprev<CR>
+" 1つ後のバッファに切り替え
+nnoremap <C-K> :bnext<CR>
+
+" 検索後にジャンプした際に検索単語を画面中央に持ってくる
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+
+nnoremap Q <Nop>
+nnoremap q: :q
+nnoremap :Q :q
+
+" insertモードから抜ける
+inoremap jj <ESC>
+inoremap っj <ESC>
+inoremap kk <ESC>
+
+" 1つ前のバッファに切り替え
+inoremap <silent> <C-J> <C-o>:bprev<CR>
+" 1つ後のバッファに切り替え
+inoremap <silent> <C-K> <C-o>:bnext<CR>
+
+" insert mode中にemacsのキーバインドを流用
+inoremap <C-a> <C-o>I
+inoremap <C-e> <End>
+
+" vを二回で行末まで選択
+vnoremap v $h
+
