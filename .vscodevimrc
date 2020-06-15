@@ -35,7 +35,7 @@ inoremap <silent> <C-K> <C-o>:bnext<CR>
 
 " insert mode中にemacsのキーバインドを流用
 inoremap <C-a> <C-o>I
-inoremap <C-e> <End>
+inoremap <C-e> <C-o>A
 
 " vを二回で行末まで選択
 vnoremap v $h

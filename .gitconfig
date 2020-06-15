@@ -9,6 +9,7 @@
 [alias]
   co = checkout
   br = branch
+  s = status
 [pager]
   log = diff-highlight | less
   show = diff-highlight | less
