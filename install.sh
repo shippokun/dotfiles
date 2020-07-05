@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ ! -x "`which fzf`" ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install
-fi
-
 for f in .??*
 do
   [[ "$f" == ".git" ]] && continue

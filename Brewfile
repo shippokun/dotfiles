@@ -2,6 +2,7 @@
 cask_args appdir: "/Applications"
 
 brew "curl"
+brew "fzf"
 brew "git"
 brew "tig"
 brew "anyenv"
