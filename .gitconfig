@@ -10,6 +10,13 @@
   co = checkout
   br = branch
   s = status
+  gcf = -c gc.pruneExpire=now \
+  -c gc.worktreePruneExpire=now \
+  -c gc.reflogExpire=now \
+  -c gc.reflogExpireUnreachable=now \
+  -c gc.rerereResolved=now \
+  -c gc.rerereUnResolved=now \
+  gc --aggressive
 [pager]
   log = diff-highlight | less
   show = diff-highlight | less
@@ -17,3 +24,5 @@
 [url "github:"]
   InsteadOf = https://github.com/
   InsteadOf = git@github.com:
+[init]
+	defaultBranch = main

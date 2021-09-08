@@ -14,6 +14,7 @@ brew "asdf"
 brew "yarn"
 brew "gibo"
 brew "gh"
+brew "ghq"
 
 cask "1password"
 cask "bettertouchtool"

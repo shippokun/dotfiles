@@ -24,9 +24,9 @@ nnoremap q: :q
 nnoremap :Q :q
 
 " insertモードから抜ける
-inoremap jj <ESC>
-inoremap っj <ESC>
-inoremap kk <ESC>
+" inoremap jj <ESC>
+" inoremap っj <ESC>
+" inoremap kk <ESC>
 
 " 1つ前のバッファに切り替え
 inoremap <silent> <C-J> <C-o>:bprev<CR>

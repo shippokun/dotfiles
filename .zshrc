@@ -10,7 +10,7 @@ if [[ ! -d ~/.zinit ]]; then
   git clone https://github.com/zdharma/zinit $HOME/.zinit/bin
 fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/env:$PATH"
 
 source $HOME/.zinit/bin/zinit.zsh
 autoload -Uz _zinit
@@ -71,6 +71,7 @@ alias v="vim"
 alias g="git"
 alias dc="docker-compose"
 alias ngc="npx git-cz"
+alias minecraft="~/game/phantom-macos -server 118.27.10.64:19132"
 
 # 不要なファイルを表示しない
 alias tree='tree -a -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
@@ -87,7 +88,8 @@ function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 eval "$(anyenv init -)"
 export PATH="/usr/local/opt/libarchive/bin:$PATH"
 
-. $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/asdf.sh
+. $(brew --prefix asdf)/asdf.sh
 
 load_if_exists () {
   if [ -e $1 ]; then
@@ -102,12 +104,19 @@ export FZF_DEFAULT_OPTS='--inline-info --height 40% --border'
 
 load_if_exists "$HOME/.zshrc.local"
 
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+PATH=/usr/local/bin/git:$PATH
+export PATH="/usr/local/opt/libxslt/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/libxslt/lib"
+export CPPFLAGS="-I/usr/local/opt/libxslt/include"
+export PKG_CONFIG_PATH="/usr/local/opt/libxslt/lib/pkgconfig"
+export PATH="/usr/local/opt/libxml2/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH=$PATH:/Library/PostgreSQL/11/bin
+#export VOLTA_HOME="$HOME/.volta"
+#export PATH="$VOLTA_HOME/bin:$PATH"
+export DENO_INSTALL="/Users/shippokun/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"

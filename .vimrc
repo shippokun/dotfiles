@@ -564,4 +564,4 @@ set t_Co=256
 syntax on
 set termguicolors
 set background=dark
-colorscheme desert "hybrid, delek, torte, desert
+colorscheme hybrid " delek, torte, desert
