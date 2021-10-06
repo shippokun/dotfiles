@@ -42,3 +42,6 @@ end
 function fzf
     command fzf --height 30% --reverse --border $argv
 end
+
+## asdf
+source ~/ghq/github.com/asdf-vm/asdf/asdf.fish
