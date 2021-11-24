@@ -28,6 +28,10 @@ alias gplo="git pull origin"
 alias vimrc="vim ~/.vimrc"
 alias tigrc="vim ~/.tigrc"
 alias fishrc="vim ~/.config/fish/config.fish"
+# 不要なファイルを表示しない
+alias tree='tree -a -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
+# alias local_refresh="git branch --merged master | grep -vE '^\*|master$|staging$|production$' | xargs -I % git branch -d %"
+# alias remote_refresh="git branch -r --merged master | grep -v -e master -e staging -e production | sed -e 's% *origin/%%' | xargs -I% git push --delete origin %"
 
 ## KEY_BINDINGS
 
@@ -44,4 +48,6 @@ function fzf
 end
 
 ## asdf
-source ~/ghq/github.com/asdf-vm/asdf/asdf.fish
+source /usr/local/opt/asdf/asdf.fish
+
+export PATH="/usr/local/opt/openssl/bin:$PATH"
