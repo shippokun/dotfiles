@@ -28,6 +28,7 @@ cask "karabiner-elements"
 cask "deepl"
 cask "clipy"
 cask "altair-graphql-client"
+cask "adoptopenjdk" /* PlantUML用にインストール */
 
 mas "BetterSnapTool", id: 417375580
 mas "Slack", id: 803453959
