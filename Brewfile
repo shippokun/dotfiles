@@ -31,4 +31,4 @@ cask "altair-graphql-client"
 
 mas "BetterSnapTool", id: 417375580
 mas "Slack", id: 803453959
-mas "TweetDeck", id: 485812721
+
