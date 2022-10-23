@@ -7,6 +7,7 @@ do
   [[ "$f" == ".DS_Store" ]] && continue
   [[ "$f" == ".zplugin" ]] && continue
   [[ "$f" == ".config" ]] && continue
+  [[ "$f" == ".trash" ]] && continue
 
   echo "$f"
   ln -s $PWD/"$f" $HOME/"$f"
@@ -18,7 +19,9 @@ fi
 if !(type "cargo" > /dev/null 2>&1); then
   curl https://sh.rustup.rs -sSf | sh
 fi
-ln -s $PWD/.config/fish/config.fish $HOME/.config/fish/config.fish
-ln -s $PWD/.config/fish/fish_plugins $HOME/.config/fish/fish_plugins
+
+# ignore fish
+# ln -s $PWD/.config/fish/config.fish $HOME/.config/fish/config.fish
+# ln -s $PWD/.config/fish/fish_plugins $HOME/.config/fish/fish_plugins
 
 # pip3 install --upgrade pynvim
