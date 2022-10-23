@@ -49,7 +49,6 @@ if exists('*minpac#init')
   call minpac#add('tpope/vim-surround')
   call minpac#add('junegunn/vim-easy-align')
   call minpac#add('w0rp/ale')
-  call minpac#add('Yggdroot/indentLine')
   call minpac#add('tpope/vim-projectionist')
   call minpac#add('deris/vim-shot-f')
   call minpac#add('mattn/vim-sqlfmt')
@@ -268,6 +267,9 @@ let g:airline_symbols.modified = "\uf459"
 let g:airline_symbols.spell = "\uf49e"
 let g:airline_symbols.branch = "\uf418"
 let g:airline_section_x = ''
+
+let g:fern_disable_startup_warnings = 1
+
 "}}}
 
 " 自動コマンド{{{

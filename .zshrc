@@ -71,7 +71,6 @@ alias v="vim"
 alias g="git"
 alias dc="docker-compose"
 alias ngc="npx git-cz"
-alias minecraft="~/game/phantom-macos -server 118.27.10.64:19132"
 
 # 不要なファイルを表示しない
 alias tree='tree -a -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
