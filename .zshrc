@@ -7,7 +7,7 @@ fi
 
 # Clone zinit if not exist
 if [[ ! -d ~/.zinit ]]; then
-  git clone https://github.com/zdharma/zinit $HOME/.zinit/bin
+  git clone https://github.com/zdharma-continuum/zinit $HOME/.zinit/bin
 fi
 
 export PATH="$HOME/.cargo/env:$PATH"
@@ -17,7 +17,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # 構文のハイライト
-zinit ice wait'!0'; zinit load zdharma/fast-syntax-highlighting
+zinit ice wait'!0'; zinit load zdharma-continuum/fast-syntax-highlighting
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 # タイプ補完
 zinit load zsh-users/zsh-autosuggestions
