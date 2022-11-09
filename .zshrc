@@ -71,6 +71,8 @@ alias v="vim"
 alias g="git"
 alias dc="docker-compose"
 alias ngc="npx git-cz"
+alias t="tig"
+alias grl="git branch --merged main | grep -vE '^\*|master$|main$' | xargs -I % git branch -d %"
 
 # 不要なファイルを表示しない
 alias tree='tree -a -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
@@ -84,11 +86,8 @@ function is_screen_running() { [ ! -z "$STY" ]; }
 function shell_has_started_interactively() { [ ! -z "$PS1" ]; }
 function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 
-eval "$(anyenv init -)"
-export PATH="/usr/local/opt/libarchive/bin:$PATH"
-
-# . $HOME/.asdf/asdf.sh
-. $(brew --prefix asdf)/asdf.sh
+. $HOME/.asdf/asdf.sh
+# . $(brew --prefix asdf)/asdf.sh
 
 load_if_exists () {
   if [ -e $1 ]; then
@@ -108,14 +107,50 @@ load_if_exists "$HOME/.zshrc.local"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 PATH=/usr/local/bin/git:$PATH
-export PATH="/usr/local/opt/libxslt/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/libxslt/lib"
-export CPPFLAGS="-I/usr/local/opt/libxslt/include"
-export PKG_CONFIG_PATH="/usr/local/opt/libxslt/lib/pkgconfig"
-export PATH="/usr/local/opt/libxml2/bin:$PATH"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH=$PATH:/Library/PostgreSQL/11/bin
-#export VOLTA_HOME="$HOME/.volta"
-#export PATH="$VOLTA_HOME/bin:$PATH"
-export DENO_INSTALL="/Users/shippokun/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# keybind
+
+## git branch search
+_fbr() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+zle -N _fbr
+bindkey '^b' _fbr
+
+## squash mergeされたローカルのブランチを削除
+function _gsmlr() {
+  git checkout -q main && \
+  git for-each-ref refs/heads/ "--format=%(refname:short)" | \
+  while read branch; do
+    mergeBase=$(git merge-base main $branch) && \
+      [[ $(git cherry main $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && \
+      git branch -D $branch;
+  done
+}
+zle -N _gsmlr
+alias gsmlr="_gsmlr"
+
+## for peco and ghq
+function peco-src () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-src
+bindkey '^]' peco-src
