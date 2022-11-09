@@ -15,6 +15,7 @@ brew "yarn"
 brew "gibo"
 brew "gh"
 brew "ghq"
+brew "peco"
 brew "graphviz"
 
 cask "1password"

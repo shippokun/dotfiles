@@ -40,6 +40,7 @@ if exists('*minpac#init')
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Add about vim plugins
+  call minpac#add('neoclide/coc.nvim')
   call minpac#add('Townk/vim-autoclose')
   call minpac#add('airblade/vim-gitgutter')
   call minpac#add('honza/vim-snippets')
