@@ -25,3 +25,6 @@ fi
 # ln -s $PWD/.config/fish/fish_plugins $HOME/.config/fish/fish_plugins
 
 # pip3 install --upgrade pynvim
+
+# for d2 install
+# curl -fsSL https://d2lang.com/install.sh | sh -s --
