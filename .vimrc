@@ -56,18 +56,6 @@ if exists('*minpac#init')
   call minpac#add('lambdalisue/fern.vim')
   call minpac#add('editorconfig/editorconfig-vim')
 
-  " For python plugins
-  call minpac#add('davidhalter/jedi-vim')
-  call minpac#add('hynek/vim-python-pep8-indent')
-  call minpac#add('Townk/vim-autoclose')
-  call minpac#add('scrooloose/syntastic')
-
-  " For frontend plugins
-  call minpac#add('prettier/vim-prettier', {
-    \ 'do': '!npm install',
-    \ 'branch': 'release/0.x'})
-  call minpac#add('mattn/emmet-vim')
-
   " Style
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
@@ -76,14 +64,10 @@ if exists('*minpac#init')
 
   " Syntax
   call minpac#add('ap/vim-css-color')
-  call minpac#add('posva/vim-vue')
   call minpac#add('jparise/vim-graphql')
 
   " LSP(Language Server Protocol)
   call minpac#add('neoclide/coc.nvim', { 'branch': 'release' })
-
-  " Hobby
-  call minpac#add('twitvim/twitvim')
 endif
 "}}}
 
@@ -157,19 +141,6 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Disable OS X index files
 set wildignore+=.DS_Store
 
-" python lint settings{{{
-
-" let g:jedi#force_py_version = '3.8'
-"保存時に自動でチェック
-let g:PyFlakeOnWrite = 1
-let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
-let g:PyFlakeDefaultComplexity=10
-
-" syntasticの設定
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-
-"}}}
-
 " ヤンクレジスタに格納されるコマンド
 let g:yankring_n_keys = 'Y y D'
 
@@ -177,97 +148,7 @@ let g:indentLine_faster = 1
 
 let g:user_emmet_leader_key='<c-y>'
 
-let g:coc_global_extensions = [
-\  'coc-lists',
-\  'coc-json',
-\  'coc-html',
-\  'coc-css',
-\  'coc-prettier',
-\  'coc-git',
-\  'coc-eslint',
-\  'coc-jest',
-\  'coc-inline-jest',
-\  'coc-yaml',
-\  'coc-python',
-\  'coc-webpack',
-\  'coc-tsserver',
-\  'coc-docker',
-\  'coc-vetur']
-
 let g:vim_json_syntax_conceal = 0
-
-let g:ale_linters = {
-\   'html': [],
-\   'javascript': ['eslint', 'prettier'],
-\   'json': ['prettier'],
-\   'css': ['prettier'],
-\   'python': ['flake8'],
-\   'vue': ['eslint']
-\}
-
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = "\uF05E"
-let g:ale_sign_warning = "\uF071"
-
-let g:ale_linter_aliases = {'vue': 'css'}
-
-let twitvim_enable_python = 1
-let twitvim_browser_cmd = 'chrm'
-let twitvim_force_ssl = 1
-let twitvim_count = 40
-
-" airline options{{{
-let g:webdevicons_enable = 1
-let g:webdevicons_enable_nerdtree = 0
-" adding the custom source to unite
-let g:webdevicons_enable_unite = 0
-" adding the column to vimfiler
-let g:webdevicons_enable_vimfiler = 0
-" adding to vim-airline's tabline
-let g:webdevicons_enable_airline_tabline = 1
-" adding to vim-airline's statusline
-let g:webdevicons_enable_airline_statusline = 1
-" ctrlp glyphs
-let g:webdevicons_enable_ctrlp = 0
-" adding to flagship's statusline
-let g:webdevicons_enable_flagship_statusline = 0
-" turn on/off file node glyph decorations (not particularly useful)
-let g:WebDevIconsUnicodeDecorateFileNodes = 1
-" use double-width(1) or single-width(0) glyphs
-" only manipulates padding, has no effect on terminal or set(guifont) font
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-" whether or not to show the nerdtree brackets around flags
-let g:webdevicons_conceal_nerdtree_brackets = 1
-" the amount of space to use after the glyph character (default ' ')
-let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
-" Force extra padding in NERDTree so that the filetype icons line up vertically
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 0
-
-let g:airline_powerline_fonts = 1
-let g:airline_theme='papercolor'
-let g:airline_mode_map = {
-  \ '__' : '-',
-  \ 'n'  : 'N',
-  \ 'i'  : 'I',
-  \ 'R'  : 'R',
-  \ 'c'  : 'C',
-  \ 'v'  : 'V',
-  \ 'V'  : 'V',
-  \ '' : 'V',
-  \ 's'  : 'S',
-  \ 'S'  : 'S',
-  \ '' : 'S',
-  \ }
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.paste = "\uf0ea"
-let g:airline_symbols.readonly = "\ue0a2"
-let g:airline_symbols.modified = "\uf459"
-let g:airline_symbols.spell = "\uf49e"
-let g:airline_symbols.branch = "\uf418"
-let g:airline_section_x = ''
 
 let g:fern_disable_startup_warnings = 1
 
@@ -296,12 +177,6 @@ augroup reload_vim
   autocmd BufWritePost *.vim source %
 augroup END
 
-augroup reload_vue_every_time
-  autocmd!
-  autocmd FileType vue syntax sync fromstart
-  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
-augroup END
-
 augroup commit_width
   autocmd!
   autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -314,15 +189,6 @@ augroup cursorline_highlight
   autocmd WinLeave * setlocal nocursorline
   autocmd CursorHold,CursorHoldI * setlocal cursorline | let s:cur_f = 1
   autocmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline | endif
-augroup END
-
-" 折り畳み機能を有効化
-augroup folding_enable
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
-  set foldtext=getline(v:foldstart)
-  set fillchars=fold:\ " white spaceは態と残している
-  autocmd Colorscheme * hi Folded ctermfg=lightmagenta guifg=lightmagenta
 augroup END
 
 " htmlの閉じタグ補完
@@ -342,31 +208,6 @@ augroup fern_setting
   " autocmd FileType * nested Fern . -reveal=% -drawer
   autocmd FileType fern call s:init_fern()
 augroup END
-
-augroup jedi_setting
-  autocmd!
-  autocmd FileType python setlocal completeopt-=preview
-augroup END
-
-" ファイルのディレクトリまたは親ディレクトリのいずれかにPipfileがあればpipenv管理下としてパスをセットする
-function! s:addPipenvPath()
-  let pipenv_dir = expand('%:p:h')
-  while pipenv_dir !=# '/'
-    if filereadable(l:pipenv_dir . '/Pipfile')
-      let venv_path = trim(system(printf("sh -c 'cd %s; pipenv --venv'", pipenv_dir)))
-      let g:jedi#virtualenv_path = venv_path
-      return
-    endif
-
-    let pipenv_dir = fnamemodify(pipenv_dir, ':h')
-  endwhile
-endfunction
-
-augroup vimrc-python
-  autocmd!
-  autocmd FileType python :call s:addPipenvPath()
-augroup END
-"}}}
 
 " mapping設定{{{
 " トグルでコメント制御
@@ -496,29 +337,6 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Introduce function text object
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
