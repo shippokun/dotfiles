@@ -19,6 +19,7 @@ brew "peco"
 brew "graphviz"
 brew "kustomize"
 brew "jq"
+brew "docker-compose"
 
 cask "1password"
 cask "bettertouchtool"
@@ -33,11 +34,12 @@ cask "clipy"
 cask "altair-graphql-client"
 cask "adoptopenjdk" /* PlantUML用にインストール */
 cask "dbeaver-community"
+cask "slack"
+cask "raycast"
 
 /* terraform pacakge */
 tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"
 
 mas "BetterSnapTool", id: 417375580
-mas "Slack", id: 803453959
 
