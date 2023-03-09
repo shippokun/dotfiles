@@ -20,6 +20,7 @@ brew "graphviz"
 brew "kustomize"
 brew "jq"
 brew "docker-compose"
+brew "comby"
 
 cask "1password"
 cask "bettertouchtool"
