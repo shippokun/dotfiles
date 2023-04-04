@@ -37,6 +37,7 @@ cask "adoptopenjdk" /* PlantUML用にインストール */
 cask "dbeaver-community"
 cask "slack"
 cask "raycast"
+cask "keycastr"
 
 /* terraform pacakge */
 tap "hashicorp/tap"
