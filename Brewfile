@@ -1,4 +1,3 @@
-/* brew bundle で実行。事前にAppStoreにログインが必須 */
 cask_args appdir: "/Applications"
 
 brew "curl"
@@ -21,7 +20,6 @@ brew "kustomize"
 brew "jq"
 brew "docker-compose"
 brew "comby"
-brew "wrap"
 brew "lazygit"
 
 cask "1password"
@@ -34,13 +32,13 @@ cask "karabiner-elements"
 cask "deepl"
 cask "clipy"
 cask "altair-graphql-client"
-cask "adoptopenjdk" /* PlantUML用にインストール */
+cask "adoptopenjdk"
 cask "dbeaver-community"
 cask "slack"
 cask "raycast"
 cask "keycastr"
+cask "warp"
 
-/* terraform pacakge */
 tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"
 
