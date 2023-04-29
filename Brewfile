@@ -21,13 +21,14 @@ brew "kustomize"
 brew "jq"
 brew "docker-compose"
 brew "comby"
+brew "wrap"
+brew "lazygit"
 
 cask "1password"
 cask "bettertouchtool"
 cask "docker"
 cask "google-chrome"
 cask "google-japanese-ime"
-cask "iterm2"
 cask "visual-studio-code"
 cask "karabiner-elements"
 cask "deepl"
@@ -42,7 +43,6 @@ cask "keycastr"
 /* terraform pacakge */
 tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"
->>>>>>> origin/master
 
 mas "BetterSnapTool", id: 417375580
 
