@@ -33,7 +33,7 @@ if has('vim_starting')
 endif
 "}}}
 
-" Init minpac.{{{
+" Init minpac.{{
 if exists('*minpac#init')
   " minpac is loaded.
   call minpac#init()
@@ -50,24 +50,16 @@ if exists('*minpac#init')
   call minpac#add('tpope/vim-surround')
   call minpac#add('junegunn/vim-easy-align')
   call minpac#add('w0rp/ale')
-  call minpac#add('tpope/vim-projectionist')
-  call minpac#add('deris/vim-shot-f')
-  call minpac#add('mattn/vim-sqlfmt')
   call minpac#add('lambdalisue/fern.vim')
   call minpac#add('editorconfig/editorconfig-vim')
 
   " Style
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('ryanoasis/vim-devicons')
   call minpac#add('rafi/awesome-vim-colorschemes')
 
   " Syntax
   call minpac#add('ap/vim-css-color')
-  call minpac#add('jparise/vim-graphql')
-
-  " LSP(Language Server Protocol)
-  call minpac#add('neoclide/coc.nvim', { 'branch': 'release' })
 endif
 "}}}
 
