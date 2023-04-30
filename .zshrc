@@ -73,6 +73,7 @@ alias dc="docker-compose"
 alias ngc="npx git-cz"
 alias t="tig"
 alias grl="git branch --merged main | grep -vE '^\*|master$|main$' | xargs -I % git branch -d %"
+alias lg="lazygit"
 
 # 不要なファイルを表示しない
 alias tree='tree -a -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
@@ -86,7 +87,6 @@ function is_screen_running() { [ ! -z "$STY" ]; }
 function shell_has_started_interactively() { [ ! -z "$PS1" ]; }
 function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 
-. $HOME/.asdf/asdf.sh
 # . $(brew --prefix asdf)/asdf.sh
 
 load_if_exists () {
@@ -155,3 +155,5 @@ function peco-src () {
 zle -N peco-src
 bindkey '^]' peco-src
 
+
+. /usr/local/opt/asdf/libexec/asdf.sh
