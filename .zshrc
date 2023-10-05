@@ -74,6 +74,7 @@ alias ngc="npx git-cz"
 alias t="tig"
 alias grl="git branch --merged main | grep -vE '^\*|master$|main$' | xargs -I % git branch -d %"
 alias lg="lazygit"
+# alias tig="lazygit"
 
 # 不要なファイルを表示しない
 alias tree='tree -a -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
@@ -143,6 +144,18 @@ function _gsmlr() {
 zle -N _gsmlr
 alias gsmlr="_gsmlr"
 
+function _gsmlr2() {
+  git checkout -q master && \
+  git for-each-ref refs/heads/ "--format=%(refname:short)" | \
+  while read branch; do
+    mergeBase=$(git merge-base master $branch) && \
+      [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && \
+      git branch -D $branch;
+  done
+}
+zle -N _gsmlr2
+alias gsmlr2="_gsmlr2"
+
 ## for peco and ghq
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
@@ -155,5 +168,7 @@ function peco-src () {
 zle -N peco-src
 bindkey '^]' peco-src
 
-
-. /usr/local/opt/asdf/libexec/asdf.sh
+. $HOME/.asdf/asdf.sh
+# . /usr/local/opt/asdf/libexec/asdf.sh
+. ~/.asdf/plugins/golang/set-env.zsh
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true

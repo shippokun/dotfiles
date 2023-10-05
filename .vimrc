@@ -40,9 +40,7 @@ if exists('*minpac#init')
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Add about vim plugins
-  call minpac#add('neoclide/coc.nvim')
   call minpac#add('Townk/vim-autoclose')
-  call minpac#add('airblade/vim-gitgutter')
   call minpac#add('honza/vim-snippets')
   call minpac#add('ntpeters/vim-better-whitespace')
   call minpac#add('terryma/vim-multiple-cursors')
@@ -54,12 +52,7 @@ if exists('*minpac#init')
   call minpac#add('editorconfig/editorconfig-vim')
 
   " Style
-  call minpac#add('vim-airline/vim-airline')
-  call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('rafi/awesome-vim-colorschemes')
-
-  " Syntax
-  call minpac#add('ap/vim-css-color')
 endif
 "}}}
 
@@ -183,13 +176,6 @@ augroup cursorline_highlight
   autocmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline | endif
 augroup END
 
-" htmlの閉じタグ補完
-augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o><ESC>F<i
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o><ESC>F<i
-augroup END
-
 " Fernの設定
 function! s:init_fern() abort
   noremap <buffer> <Plug>(fern-action-hidden-set) <Plug>(fern-action-open)
@@ -264,105 +250,6 @@ inoremap <C-e> <End>
 vnoremap v $h
 
 vnoremap <silent> <Enter> :EasyAlign<cr>
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-vnoremap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nnoremap ga <Plug>(EasyAlign)
-
-vnoremap <Enter> <Plug>(EasyAlign)
-
-" coc設定{{{
-inoremap <silent><expr> <c-space> coc#refresh()
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-"}}}
-"}}}
 
 syntax sync fromstart
 
@@ -376,5 +263,5 @@ filetype plugin indent on
 set t_Co=256
 syntax on
 set termguicolors
-set background=dark
-colorscheme habamax " delek, torte, desert
+" set background=dark
+colorscheme default  " delek, torte, desert
