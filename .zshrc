@@ -172,3 +172,5 @@ bindkey '^]' peco-src
 # . /usr/local/opt/asdf/libexec/asdf.sh
 . ~/.asdf/plugins/golang/set-env.zsh
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

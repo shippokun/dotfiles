@@ -21,6 +21,9 @@ brew "jq"
 brew "docker-compose"
 brew "comby"
 brew "lazygit"
+brew "tilt"
+brew "yq"
+brew "google-cloud-sdk"
 
 cask "1password"
 cask "bettertouchtool"
@@ -41,6 +44,4 @@ cask "warp"
 
 tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"
-
-mas "BetterSnapTool", id: 417375580
 
