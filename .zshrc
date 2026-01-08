@@ -168,9 +168,33 @@ function peco-src () {
 zle -N peco-src
 bindkey '^]' peco-src
 
-. $HOME/.asdf/asdf.sh
 # . /usr/local/opt/asdf/libexec/asdf.sh
-. ~/.asdf/plugins/golang/set-env.zsh
-export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+### End of Zinit's installer chunk
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+### End of Zinit's installer chunk
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(~/.local/bin/mise activate bash)"
+export PATH="$(aqua root-dir)/bin:$PATH"
+eval "$(/Users/Iwamoto.Keigo/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+export PATH=$PATH:"/Users/hogehoge/.local/share/mise/installs/go/1.25.5/bin/"

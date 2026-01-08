@@ -21,50 +21,6 @@ let $MYVIMRC = expand('~/.vimrc')
 " If installed using Homebrew
 set runtimepath+=/usr/local/opt/fzf
 
-" Use minpac.{{{
-set packpath^=$CACHE_HOME
-let s:package_home = $CACHE_HOME . '/pack/packages'
-let s:minpac_dir = s:package_home . '/opt/minpac'
-if has('vim_starting')
-  if !isdirectory(s:minpac_dir)
-    echo 'Install minpac ...'
-    execute '!git clone --depth 1 https://github.com/k-takata/minpac ' . s:minpac_dir
-  endif
-endif
-"}}}
-
-" Init minpac.{{
-if exists('*minpac#init')
-  " minpac is loaded.
-  call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-  " Add about vim plugins
-  call minpac#add('Townk/vim-autoclose')
-  call minpac#add('honza/vim-snippets')
-  call minpac#add('ntpeters/vim-better-whitespace')
-  call minpac#add('terryma/vim-multiple-cursors')
-  call minpac#add('tomtom/tcomment_vim')
-  call minpac#add('tpope/vim-surround')
-  call minpac#add('junegunn/vim-easy-align')
-  call minpac#add('w0rp/ale')
-  call minpac#add('lambdalisue/fern.vim')
-  call minpac#add('editorconfig/editorconfig-vim')
-
-  " Style
-  call minpac#add('rafi/awesome-vim-colorschemes')
-endif
-"}}}
-
-" Define user commands for updating/cleaning the plugins.{{{
-" Each of them loads minpac, reloads .vimrc to register the
-" information of plugins, then performs the task.
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
-packadd minpac
-"}}}
-
 " Vim set config.{{{
 set backspace=indent,eol,start " http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set fileencoding=utf-8  " Set encoding
