@@ -196,5 +196,4 @@ zinit light-mode for \
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(~/.local/bin/mise activate bash)"
 export PATH="$(aqua root-dir)/bin:$PATH"
-eval "$(/Users/Iwamoto.Keigo/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
-export PATH=$PATH:"/Users/hogehoge/.local/share/mise/installs/go/1.25.5/bin/"
+eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
