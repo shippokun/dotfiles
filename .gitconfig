@@ -26,3 +26,5 @@
   InsteadOf = git@github.com:
 [init]
 	defaultBranch = main
+[wt]
+	basedir = .worktrees

@@ -19,6 +19,7 @@ brew "lazygit"
 brew "tilt"
 brew "yq"
 brew "google-cloud-sdk"
+brew "k1LoW/tap/git-wt"
 
 cask "google-japanese-ime"
 cask "visual-studio-code"

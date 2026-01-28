@@ -195,5 +195,5 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(~/.local/bin/mise activate bash)"
-export PATH="$(aqua root-dir)/bin:$PATH"
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+eval "$(git wt --init zsh)"
